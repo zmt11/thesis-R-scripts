@@ -3,6 +3,9 @@ BENEFICIAL PLANT˗MICROBE INTERACTION IN AGROECOSYSTEMS: DECIPHERING THE RHIZOSP
 
 This repository contain codes related to my PhD thesis "Beneficial Plant-microbe Interactions in Agroecosystems: Deciphering the Rhizosphere Microbial Community in Field Grown Brassica napus L." presented for the degree of Doctor of Philosophy at the University of Saskatchewan in 2020. 
 
+## Codes used
+This scripts are being formated in order to make them more readily usable. I will be updating this repository as this progresses, and this sentence will be removed once all scripts used have been uploaded accordingly.  
+
 ## Abstract
 
 Understanding the microbiome and factors governing its structure under field conditions is essential to optimize the microbiome for improved crop productivity. The purpose of my research was to characterize the rhizosphere bacterial community of sixteen diverse Brassica napus lines under field conditions to identify microbial patterns and specific signatures that could be utilized in canola breeding and production management strategies.
