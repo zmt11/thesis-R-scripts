@@ -1,18 +1,18 @@
-Guide:
+#Guide:
 
 This information matches the R scripts with the thesis chapter used in to produce the results. My thesis has three data chapters (Chapter 3 through 5). 
 
 Chapter 3: CORE AND DIFFERENTIALLY ABUNDANT BACTERIAL TAXA IN THE RHIZOSPHERE OF FIELD GROWN BRASSICA NAPUS GENOTYPES: IMPLICATIONS FOR CANOLA BREEDING
 
 * Script file: Summary_statistics_canola_sequence_data.R
-      Taxonomic characterization (Appendices A – C):
+      Taxonomic characterization (Appendices A â€“ C):
 * Script file: core_genera.R 
-      B. napus rhizosphere core taxa (Tables 3.2 – 3.4 and Appendix D):  
+      B. napus rhizosphere core taxa (Tables 3.2 â€“ 3.4 and Appendix D):  
 * Script files: alpha_diversity_genetic_distance_heritability.R
       Genotype variation in alpha diversity measures (Figure 3.2)
      Microbial patterns among B. napus genotypes
      Relationship between B. napus genotypes and rhizosphere microbial composition (Figure 3.3)
-     Heritability of microbial attributes (Tables 3.5 – 3.6):
+     Heritability of microbial attributes (Tables 3.5 â€“ 3.6):
 * Script file: differential_abundance.R
       Differentially abundant bacterial genera (Tables 3.7 and 3.8, Figure 3.4, Appendices E, F, G):
 
