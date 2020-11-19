@@ -120,7 +120,7 @@ qiime feature-table tabulate-seqs \
 --o-visualization rep-seqs.qzv
 
 ## Now train taxonomy classifier and assign taxonomy
-## train classifying sequence from Silva.
+## train classifying sequence.
 ## Download latest greengenes database 
 ## use the 99 seq and taxonomy for training
 ## change sequence in to qiime artifact
