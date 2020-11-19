@@ -1,4 +1,4 @@
-#Guide:
+**Guide**:
 
 This information matches the R scripts with the thesis chapter used in to produce the results. My thesis has three data chapters (Chapter 3 through 5). 
 
