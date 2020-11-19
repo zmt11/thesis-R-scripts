@@ -1,0 +1,39 @@
+Guide:
+
+This information matches the R scripts with the thesis chapter used in to produce the results. My thesis has three data chapters (Chapter 3 through 5). 
+
+Chapter 3: CORE AND DIFFERENTIALLY ABUNDANT BACTERIAL TAXA IN THE RHIZOSPHERE OF FIELD GROWN BRASSICA NAPUS GENOTYPES: IMPLICATIONS FOR CANOLA BREEDING
+
+* Script file: Summary_statistics_canola_sequence_data.R
+      Taxonomic characterization (Appendices A – C):
+* Script file: core_genera.R 
+      B. napus rhizosphere core taxa (Tables 3.2 – 3.4 and Appendix D):  
+* Script files: alpha_diversity_genetic_distance_heritability.R
+      Genotype variation in alpha diversity measures (Figure 3.2)
+     Microbial patterns among B. napus genotypes
+     Relationship between B. napus genotypes and rhizosphere microbial composition (Figure 3.3)
+     Heritability of microbial attributes (Tables 3.5 – 3.6):
+* Script file: differential_abundance.R
+      Differentially abundant bacterial genera (Tables 3.7 and 3.8, Figure 3.4, Appendices E, F, G):
+
+Chapter 4: ROOT GROWTH DYNAMICS, DOMINANT RHIZOSPHERE BACTERIA, AND CORRELATION BETWEEN DOMINANT BACTERIAL GENERA AND ROOT TRAITS THROUGH BRASSICA NAPUS DEVELOPMENT
+
+* Script file: root_growth_dynamics_dominat_taxa.R
+      B. napus root growth dynamics across the growing season (Table 4.1, Figure 4.1 and   Appendices H, I)
+     Dominant bacterial taxa based on frequency of occurrence (Table 4.2 and Appendices K, L, M, N)
+     Dominant bacterial taxa based on mean relative abundance (Figures 4. 2, 4.3, 4.4)
+     Proteobacteria to Acidobacteria ratios across growth stages
+    Correlations between canola root traits and potentially growth promoting and dominant genera under field conditions (Figures 4.5 and 4.6)
+ Correlation of rhizosphere bacteria with soil conditions and weather variables (Appendices P and Q)
+
+Chapter 5: BRASSICA NAPUS RHIZOSPHERE BACTERIAL COMMUNITY ASSEMBLY: DRIVER AND CORE-HUB COMMUNITIES ACROSS GROWTH STAGES AND BETWEEN GENOTYPES.
+
+Script file: Coocurnence_network_analysis.R
+B. napus rhizosphere bacterial network complexity through plant development (Table 5.1, Appendix R)
+Core-hub communities in B. napus rhizosphere microbial community and their conservation across growth stage (Figures 5.1, 5.2, 5.3)
+Potential driver bacterial genera in B. napus rhizosphere at different growth stages (Tables 5.2, 5.3, 5.4, 5.5, Appendices S, T, U)
+Dominant metabolic pathways and functional features of driver genera across B. napus growth stages (Tables 5.6 and 5.7, Appendices V, W, X, Y, Z, and AA)
+Rhizosphere bacterial network complexity in genetically distinct B. napus genotypes (Table 5.8)
+Core-hub communities in the rhizosphere of genetically distinct B. napus genotypes (Figure 5.4)
+Potential driver genera resulting in microbial network variations between genetically distinct genotypes (Appendix AB)
+Dominant metabolic pathways and functional features of driver genera in B. napus breeding lines (Tables 5.9 and 5.10, Appendices AC and AD)
