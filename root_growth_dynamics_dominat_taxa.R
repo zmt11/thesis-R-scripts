@@ -1166,3 +1166,800 @@ library(psych)
 RL.summary= describeBy(data.root$Total_RL,list(data.root$Canola.Lines,data.root$Growth.Stage),mat=TRUE)
 RL.summary= as.data.frame(RL.summary)
 write.csv(RL.summary, 'RL.summary.csv')
+
+
+########
+
+### Aditional Analysis done based on reviewers comments May 2021
+## Correlation test between microbial metrics and root trait metrics 
+# Taxonomy glomed at Genus level
+# Do mantel test using the whole data set, Vegetative stage, flowering stage, maturity stage datasets separately. 
+
+
+## Load phyloseq object
+
+
+## Additional analysis for Manuscript II
+
+
+library(ggplot2)
+library(phyloseq)
+library(ape)
+library(biomformat)
+library(microbiome)
+library(ggpubr)
+library(knitr)
+library(dplyr)
+library(ampvis2)
+library(radiant) ## this is for rownames_to_column function
+library(tibble)## for as.table function
+library(microbiomeSeq)
+library(metagMisc)
+
+# Set Working directory
+setwd("D:/out_puts/phyloseq/with_green_genes_taxa/Additional_analysis_manuscript_II_2021")
+
+# load the phyloseq object containing the  2016 rhizosphere bacterial dataset
+
+load("D:/out_puts/phyloseq/with_green_genes_taxa/2016.physeq.updated.line.names.new.variable.RData")
+
+# Look summary of the phyloseq object
+
+physeq.updated.line.names.new.variable
+
+#### subset dominat genera based on both frequence and mean relative abundance plus previously identified PGPB
+
+
+physeq.top.10.genera.root.trait =  subset_taxa(physeq.updated.line.names.new.variable, Genus=="Pseudomonas"| Genus=="Flavobacterium"| Genus=="Lysobacter"| Genus=="Rhodoplanes"| Genus=="Pedobacter"| Genus=="Vibrio"| Genus=="Stenotrophomonas"| Genus=="Arthrobacter"| Genus=="Gluconacetobacter"| Genus=="Skermanella"| Genus=="Bradyrhizobium"| Genus=="Paenibacillus"| Genus=="Pantoea"| Genus=="Rhizobium"| Genus=="Bacillus"| Genus=="Leifsonia"| Genus=="Microbacterium"| Genus=="Rhodococcus"| Genus=="Xanthomonas"| Genus=="Variovorax"| Genus=="Agrobacterium"| Genus=="Phyllobacterium")
+
+## remove zero sum taxa
+physeq.top.10.genera.root.trait= prune_taxa(taxa_sums(physeq.top.10.genera.root.trait) > 0, physeq.top.10.genera.root.trait)
+
+
+## remove zero sum samples
+#physeq.top.10.genera.root.trait = prune_samples(sample_sums(physeq.top.10.genera.root.trait)>=1, physeq.top.10.genera.root.trait)
+
+#physeq <- taxa_level(physeq.top.10.genera.root.trait, "Genus") ### tax_glom at geneus level with genus name indicated
+
+physeq_genus<- tax_glom(physeq.top.10.genera.root.trait, taxrank="Genus")
+
+## remove zero sum samples
+physeq_genus = prune_samples(sample_sums(physeq_genus)>=1, physeq_genus)
+
+# Change the phyloseq to CSV
+
+physeq_melt <- psmelt(physeq_genus)
+write.csv(physeq_melt, 'physeq_melt.csv')
+
+## open the physeq_melt.csv file and prepare it for mantel test
+
+# load the csv file with subset genera and metadata
+Most_abundant_pgpb_subset_mantel_correlation_analysis
+
+## run mantel test on bacterial matrix vs different root traits and different growth stages
+
+# sunset the data for preparing the distace matrix
+
+library(vegan)
+# substet variable of interest: using all data set
+abund = Most_abundant_pgpb_subset_mantel_correlation_analysis[,26:ncol(Most_abundant_pgpb_subset_mantel_correlation_analysis)] # bacterial genera begins starting column 26
+
+root_length_total = Most_abundant_pgpb_subset_mantel_correlation_analysis$Total_RL
+
+fine_root_length_total = Most_abundant_pgpb_subset_mantel_correlation_analysis$TFRL2mm
+coarse_root_length_total = Most_abundant_pgpb_subset_mantel_correlation_analysis$CoarseRL
+soil_moisture = Most_abundant_pgpb_subset_mantel_correlation_analysis$Soil.moisture
+
+FR = Most_abundant_pgpb_subset_mantel_correlation_analysis$FRL
+
+enviro_variables = Most_abundant_pgpb_subset_mantel_correlation_analysis[,20:25]
+extra_fine_root_length = Most_abundant_pgpb_subset_mantel_correlation_analysis$ExtraFRL
+rbiomass = Most_abundant_pgpb_subset_mantel_correlation_analysis$Root.Biomass
+
+##
+#abundance data frame - bray curtis dissimilarity
+dist.abund = vegdist(abund, method = "bray")
+
+#root length total - euclidean distance
+dist.root_length_total = dist(root_length_total, method = "euclidean")
+
+#fine root length total - euclidean distance
+
+dist.fine_root_length_total = dist(fine_root_length_total, method = "euclidean")
+
+#fine root length  - euclidean distance
+
+dist.FRL = dist(FR, method = "euclidean")
+
+# coarse root length- euclidean
+dist.coarse_root_length_total = dist(coarse_root_length_total, method = "euclidean")
+
+# root biomass
+dist.rbiomass= dist(rbiomass, method = "euclidean")
+
+
+#soil moisture data frame - euclidean 
+dist.soil_moisture = dist(soil_moisture, method = "euclidean")
+
+
+# all environmental variable data frame - euclidean 
+dist.enviro_variables = dist(scale(enviro_variables), method = "euclidean")
+
+# Extra fine root length  - euclidean distance
+
+dist.extra_fine_root_length = dist(extra_fine_root_length, method = "euclidean")
+
+#abundance vs biomass
+abund_rbiomass = mantel(dist.abund, dist.rbiomass, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_rbiomass
+
+#abundance vs total root length 
+abund_TRL = mantel(dist.abund, dist.root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TRL
+
+# abundance vs total fine root length
+abund_TFRL = mantel(dist.abund, dist.fine_root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TFRL
+
+# abundance vs coarse  root length
+abund_TCRL = mantel(dist.abund, dist.coarse_root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TCRL
+
+#abundane vs soil moisuture
+
+abund_dist.soil_moisture = mantel(dist.abund, dist.soil_moisture, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_dist.soil_moisture
+
+# abundance vs all environmental variables
+
+abund_dist.enviro_variables = mantel(dist.abund, dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_dist.enviro_variables
+
+# abundance vs extra fine root length
+abund_EFRL = mantel(dist.abund, dist.extra_fine_root_length, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_EFRL
+
+# abundance vs  fine root length
+abund_FRL = mantel(dist.abund, dist.FRL, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_FRL
+
+## Subset vegetative growth stage data
+
+Vegetative_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Growth.Stage =='Vegetative')
+
+vabund = Vegetative_data[,26:ncol(Vegetative_data)] # bacterial genera begins starting column 26
+
+vroot_length_total = Vegetative_data$Total_RL
+
+vfine_root_length_total = Vegetative_data$TFRL2mm
+vcoarse_root_length_total = Vegetative_data$CoarseRL
+vFR = Vegetative_data$FRL
+vEFR= Vegetative_data$ExtraFRL
+vrbiomass = Vegetative_data$Root.Biomass
+vsoil_moisture = Vegetative_data$Soil.moisture
+
+venviro_variables = Vegetative_data[,20:25]
+
+#abundance data frame - bray curtis dissimilarity
+vdist.abund = vegdist(vabund, method = "bray")
+
+#root biomass - euclidean distance
+vdist.vrbiomass = dist(vrbiomass, method = "euclidean")
+
+#root length total - euclidean distance
+vdist.root_length_total = dist(vroot_length_total, method = "euclidean")
+
+#fine root length total - euclidean distance
+
+vdist.fine_root_length_total = dist(vfine_root_length_total, method = "euclidean")
+
+#fine root length  - euclidean distance
+
+vdist.FRL = dist(vFR, method = "euclidean")
+
+# Extra fine root length  - euclidean distance
+
+vdist.EFRL = dist(vEFR, method = "euclidean")
+
+# coarse root length- euclidean
+vdist.coarse_root_length_total = dist(vcoarse_root_length_total, method = "euclidean")
+
+
+
+#soil moisture data frame - euclidean 
+vdist.soil_moisture = dist(vsoil_moisture, method = "euclidean")
+
+
+# all environmental variable data frame - euclidean 
+vdist.enviro_variables = dist(venviro_variables, method = "euclidean")
+
+
+#abundance vs root biomass
+vabund_rbiomass = mantel(vdist.abund, vdist.vrbiomass, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_rbiomass
+
+#abundance vs total root length 
+vabund_TRL = mantel(vdist.abund, vdist.root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TRL
+
+# abundance vs total fine root length
+vabund_TFRL = mantel(vdist.abund, vdist.fine_root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TFRL
+
+
+# abundance vs  fine root length
+vabund_FRL = mantel(vdist.abund, vdist.FRL, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_FRL
+
+# abundance vs  Extra fine root length
+vabund_EFRL = mantel(vdist.abund, vdist.EFRL, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_EFRL
+
+# abundance vs coarse  root length
+vabund_TCRL = mantel(vdist.abund, vdist.coarse_root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TCRL
+
+#abundane vs soil moisuture
+
+vabund_dist.soil_moisture = mantel(vdist.abund, vdist.soil_moisture, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_dist.soil_moisture
+
+# abundance vs all environmental variables
+
+vabund_dist.enviro_variables = mantel(vdist.abund, vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_dist.enviro_variables
+
+########
+
+## Subset Flowering growth stage data
+
+Flowering_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Growth.Stage =='Flowering')
+
+fabund = Flowering_data[,26:ncol(Flowering_data)] # bacterial genera begins starting column 26
+
+froot_length_total = Flowering_data$Total_RL
+
+ffine_root_length_total = Flowering_data$TFRL2mm
+fcoarse_root_length_total = Flowering_data$CoarseRL
+fFRL = Flowering_data$FRL
+fEFRL = Flowering_data$ExtraFRL
+frbiomass = Flowering_data$Root.Biomass
+
+fsoil_moisture = Flowering_data$Soil.moisture
+
+fenviro_variables = Flowering_data[,20:25]
+
+#abundance data frame - bray curtis dissimilarity
+fdist.abund = vegdist(fabund, method = "bray")
+
+#root biomass  - euclidean distance
+fdist.rbiomass = dist(frbiomass, method = "euclidean")
+
+#root length total - euclidean distance
+fdist.root_length_total = dist(froot_length_total, method = "euclidean")
+
+#fine root length total - euclidean distance
+
+fdist.fine_root_length_total = dist(ffine_root_length_total, method = "euclidean")
+
+#fine root length  - euclidean distance
+
+fdist.FRL = dist(fFRL, method = "euclidean")
+
+# Extra fine root length  - euclidean distance
+
+fdist.EFRL = dist(fEFRL, method = "euclidean")
+
+
+# coarse root length- euclidean
+fdist.coarse_root_length_total = dist(fcoarse_root_length_total, method = "euclidean")
+
+
+
+#soil moisture data frame - euclidean 
+fdist.soil_moisture = dist(fsoil_moisture, method = "euclidean")
+
+
+# all environmental variable data frame - euclidean 
+fdist.enviro_variables = dist(fenviro_variables, method = "euclidean")
+
+#abundance vs  root biomass 
+fabund_rbiomass = mantel(fdist.abund, fdist.rbiomass, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_rbiomass
+
+
+#abundance vs total root length 
+fabund_TRL = mantel(fdist.abund, fdist.root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_TRL
+
+# abundance vs total fine root length
+fabund_TFRL = mantel(fdist.abund, fdist.fine_root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_TFRL
+
+
+# abundance vs  fine root length
+fabund_FRL = mantel(fdist.abund, fdist.FRL, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_FRL
+
+# abundance vs  Extra fine root length
+fabund_EFRL = mantel(fdist.abund, fdist.EFRL, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_EFRL
+
+# abundance vs coarse  root length
+fabund_TCRL = mantel(fdist.abund, fdist.coarse_root_length_total, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_TCRL
+
+#abundane vs soil moisuture
+
+fabund_dist.soil_moisture = mantel(fdist.abund, fdist.soil_moisture, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_dist.soil_moisture
+
+# abundance vs all environmental variables
+
+fabund_dist.enviro_variables = mantel(fdist.abund, fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_dist.enviro_variables
+
+#### Partial mantel test controlling for sampling week and genotypes
+library(plyr)
+# revalue the canola line character values to numerical to calculate distance
+
+Most_abundant_pgpb_subset_mantel_correlation_analysis$genotype <- revalue(Most_abundant_pgpb_subset_mantel_correlation_analysis$Canola.Lines, c("NAM-0"="1", "NAM-13"="2", "NAM-14"="3", "NAM-17"="4", "NAM-5"="5", "NAM-23"="6", "NAM-30"="7", "NAM-32"="8", "NAM-37"="9", "NAM-43"="10", "NAM-46"="11", "NAM-48"="12", "NAM-72"="13", "NAM-76"="14", "NAM-79"="15","NAM-94"="16"))
+
+# select growth stage and sampling week
+library(tidyverse)
+
+# all data 
+weeek_canola = Most_abundant_pgpb_subset_mantel_correlation_analysis %>% select(genotype, Week)
+
+dis_week_canola = dist(weeek_canola, method = "euclidean")
+
+
+#abundance vs biomass controlling for sampling week and canola genotype
+
+abund_rbiomass_wc = mantel.partial(dist.abund, dist.rbiomass,dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_rbiomass_wc
+
+# abundance vs coarse  root length controlling for sampling week and canola genotype
+
+
+abund_TCRL_wc = mantel.partial(dist.abund, dist.coarse_root_length_total,dis_week_canola, method = "pearson", permutations = 1000, na.rm = TRUE)
+abund_TCRL_wc
+
+
+#abundance vs total root length 
+abund_TRL_wc = mantel.partial(dist.abund, dist.root_length_total,dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TRL_wc
+
+# abundance vs total fine root length
+abund_TFRL_wc = mantel.partial(dist.abund, dist.fine_root_length_total,dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TFRL_wc
+
+
+# abundance vs  fine root length
+abund_FRL_wc = mantel.partial(dist.abund, dist.FRL,dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_FRL_wc
+
+# abundance vs  Extra fine root length
+abund_EFRL_wc = mantel.partial(dist.abund, dist.extra_fine_root_length,dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_EFRL_wc
+
+#abundane vs soil moisuture
+
+abund_dist.soil_moisture_wc = mantel.partial(dist.abund, dist.soil_moisture, dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_dist.soil_moisture_wc
+
+# abundance vs all environmental variables
+
+abund_dist.enviro_variables_wc = mantel.partial(dist.abund, dist.enviro_variables,dis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_dist.enviro_variables_wc
+
+## Vegetative stage controlling for sampling week and genotype
+
+Vegetative_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Growth.Stage =='Vegetative')
+
+vweeek_canola = Vegetative_data %>% select(genotype, Week)
+vdis_week_canola = dist(vweeek_canola, method = "euclidean")
+
+#
+
+#abundance vs root biomass
+vabund_rbiomass_wc = mantel.partial(vdist.abund, vdist.vrbiomass,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_rbiomass_wc
+#abundance vs total root length 
+vabund_TRL_wc = mantel.partial(vdist.abund, vdist.root_length_total,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TRL_wc
+
+# abundance vs total fine root length
+vabund_TFRL_wc = mantel.partial(vdist.abund, vdist.fine_root_length_total,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TFRL_wc
+
+
+# abundance vs  fine root length
+vabund_FRL_wc = mantel.partial(vdist.abund, vdist.FRL,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_FRL_wc
+
+# abundance vs  Extra fine root length
+vabund_EFRL_wc = mantel.partial(vdist.abund, vdist.EFRL,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_EFRL_wc
+
+
+
+# abundance vs coarse  root length
+vabund_TCRL_wc = mantel.partial(vdist.abund, vdist.coarse_root_length_total,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TCRL_wc
+
+#abundane vs soil moisuture
+
+vabund_dist.soil_moisture_wc = mantel.partial(vdist.abund, vdist.soil_moisture, vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_dist.soil_moisture_wc
+
+# abundance vs all environmental variables
+
+vabund_dist.enviro_variables_wc = mantel.partial(vdist.abund, vdist.enviro_variables,vdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_dist.enviro_variables_wc
+
+#######F
+
+## Flowering stage controlling for sampling week and genotype
+
+Flowering_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Growth.Stage =='Flowering')
+
+fweeek_canola = Flowering_data %>% select(genotype, Week)
+fdis_week_canola = dist(fweeek_canola, method = "euclidean")
+
+#
+#abundance vs  root biomass 
+fabund_rbiomass_wc = mantel.partial(fdist.abund, fdist.rbiomass,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_rbiomass_wc
+
+#abundance vs total root length 
+fabund_TRL_wc = mantel.partial(fdist.abund, fdist.root_length_total,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_TRL_wc
+
+# abundance vs total fine root length
+fabund_TFRL_wc = mantel.partial(fdist.abund, fdist.fine_root_length_total,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_TFRL_wc
+
+
+# abundance vs  fine root length
+fabund_FRL_wc = mantel.partial(fdist.abund, fdist.FRL,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_FRL_wc
+
+# abundance vs  Extra fine root length
+fabund_EFRL_wc = mantel.partial(fdist.abund, fdist.EFRL,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_EFRL_wc
+
+
+# abundance vs coarse  root length
+fabund_TCRL_wc = mantel.partial(fdist.abund, fdist.coarse_root_length_total,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_TCRL_wc
+
+#abundane vs soil moisuture
+
+fabund_dist.soil_moisture_wc = mantel.partial(fdist.abund, fdist.soil_moisture, fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_dist.soil_moisture_wc
+
+# abundance vs all environmental variables
+
+fabund_dist.enviro_variables_wc = mantel.partial(fdist.abund, fdist.enviro_variables,fdis_week_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_dist.enviro_variables_wc
+
+#### correlation between microbial composition and canola yield per plot 
+
+# using all dataset
+canola_yield_plot = Most_abundant_pgpb_subset_mantel_correlation_analysis$Yield.per.plot
+
+vcanola_yield_plot = Vegetative_data$Yield.per.plot
+fcanola_yield_plot = Flowering_data$Yield.per.plot
+
+
+dis_canola_yield_plot= dist(canola_yield_plot, method = "euclidean")
+vdis_vcanola_yield_plot= dist(vcanola_yield_plot, method = "euclidean")
+fdis_fcanola_yield_plot= dist(fcanola_yield_plot, method = "euclidean")
+
+
+#abundance vs yield
+
+abund_yield = mantel(dist.abund, dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_yield
+
+vabund_yield = mantel(vdist.abund, vdis_vcanola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_yield
+
+fabund_yield = mantel(fdist.abund, fdis_fcanola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_yield
+
+#root legth vs yield
+
+RL_yield = mantel(dist.root_length_total, dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+RL_yield
+
+vRL_yield = mantel(vdist.root_length_total, vdis_vcanola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+vRL_yield
+
+fRL_yield = mantel(fdist.root_length_total, fdis_fcanola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+fRL_yield
+
+
+# Fine root legth vs yield
+
+RL_yield = mantel(dist.fine_root_length_total, dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+RL_yield
+
+vRL_yield = mantel(vdist.fine_root_length_total, vdis_vcanola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+vRL_yield
+
+fRL_yield = mantel(fdist.fine_root_length_total, fdis_fcanola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+fRL_yield
+
+
+
+
+####
+
+#### Correlation between Root length at week 1 and 2 with yield
+
+# subset week 1, 2 and 1 and 2 data
+
+Week_1_2_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Week =='1'|Week=='2')
+Week_1_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Week =='1')
+Week_2_data <- subset(Most_abundant_pgpb_subset_mantel_correlation_analysis,Week =='2')
+
+#
+# substet taxa variable of interest: w1
+abund_w1 = Week_1_data[,26:46] # bacterial genera begins starting column 26
+abund_w2 = Week_2_data[,26:46] # bacterial genera begins starting column 26
+abund_w1_2 = Week_1_2_data[,26:46] # bacterial genera begins starting column 26
+
+#abundance data frame - bray curtis dissimilarity
+w1_dist.abund = vegdist(abund_w1, method = "bray")
+w2_dist.abund = vegdist(abund_w2, method = "bray")
+w1_2_dist.abund = vegdist(abund_w1_2, method = "bray")
+
+
+w1_canola_yield_plot = Week_1_data$Yield.per.plot
+w2_canola_yield_plot = Week_2_data$Yield.per.plot
+w1_2_canola_yield_plot = Week_1_2_data$Yield.per.plot
+
+
+w1_dis_canola_yield_plot= dist(w1_canola_yield_plot, method = "euclidean")
+w2_dis_canola_yield_plot= dist(w2_canola_yield_plot, method = "euclidean")
+w1_2_dis_canola_yield_plot= dist(w1_2_canola_yield_plot, method = "euclidean")
+
+##
+w1_root_length_total = Week_1_data$Total_RL
+w2_root_length_total = Week_2_data$Total_RL
+w1_2_root_length_total = Week_1_2_data$Total_RL
+
+w1_TFRL = Week_1_data$TFRL2mm
+w2_TFRL = Week_2_data$TFRL2mm
+w1_2_TFRL = Week_1_2_data$TFRL2mm
+
+w1_FRL = Week_1_data$FRL
+w2_FRL = Week_2_data$FRL
+w1_2_FRL = Week_1_2_data$FRL
+
+w1_EFRL = Week_1_data$ExtraFRL
+w2_EFRL = Week_2_data$ExtraFRL
+w1_2_EFRL = Week_1_2_data$ExtraFRL
+
+w1_CRL = Week_1_data$CoarseRL
+w2_CRL = Week_2_data$CoarseRL
+w1_2_CRL = Week_1_2_data$CoarseRL
+
+#
+w1_dis_root_length_total= dist(w1_root_length_total, method = "euclidean")
+w2_dis_root_length_total= dist(w2_root_length_total, method = "euclidean")
+w1_2_dis_root_length_total= dist(w1_2_root_length_total, method = "euclidean")
+
+w1_dis_TFR= dist(w1_TFRL, method = "euclidean")
+w2_dis_TFR= dist(w2_TFRL, method = "euclidean")
+w1_2_TFR= dist(w1_2_TFRL, method = "euclidean")
+
+w1_dis_FR= dist(w1_FRL, method = "euclidean")
+w2_dis_FR= dist(w2_FRL, method = "euclidean")
+w1_2_FR= dist(w1_2_FRL, method = "euclidean")
+
+w1_dis_EFR= dist(w1_EFRL, method = "euclidean")
+w2_dis_EFR= dist(w2_EFRL, method = "euclidean")
+w1_2_EFR= dist(w1_2_EFRL, method = "euclidean")
+
+
+w1_dis_CR= dist(w1_CRL, method = "euclidean")
+w2_dis_CR= dist(w2_CRL, method = "euclidean")
+w1_2_CR= dist(w1_2_CRL, method = "euclidean")
+
+# Total root legth vs yield: not significant
+
+w1_RL_yield = mantel(w1_dis_root_length_total, w1_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_RL_yield
+
+w2_RL_yield = mantel(w2_dis_root_length_total, w2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w2_RL_yield
+
+w1_2_RL_yield = mantel(w1_2_dis_root_length_total, w1_2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_2_RL_yield
+
+# Total fine root legth vs yield : NOt significant
+
+w1_FRL_yield = mantel(w1_dis_TFR, w1_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_FRL_yield
+
+w2_FRL_yield = mantel(w2_dis_TFR, w2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w2_FRL_yield
+
+w1_2_FRL_yield = mantel(w1_2_TFR, w1_2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_2_FRL_yield
+
+
+# fine root legth vs yield :  significant
+
+w1_FR_yield = mantel(w1_dis_FR, w1_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_FR_yield  ## significant correlation at week1
+
+# here lets control for genotype difference to see how much fine root length at w1 is correlated with canola yield
+
+w1_canola = Week_1_data %>% select(genotype) # subset genotype
+w1_dis_canola = dist(w1_canola, method = "euclidean")
+
+# No run mantel test controlling for genotype difference
+
+# fine root legth vs yield :  significant
+
+w1_FR_yield_genotype = mantel.partial(w1_dis_FR, w1_dis_canola_yield_plot,w1_dis_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_FR_yield_genotype 
+
+#
+
+w2_FR_yield = mantel(w2_dis_FR, w2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w2_FR_yield
+
+w1_2_FR_yield = mantel(w1_2_FR, w1_2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_2_FR_yield
+
+
+# Extra fine root legth vs yield : NOt significant
+
+w1_EFR_yield = mantel(w1_dis_EFR, w1_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_EFR_yield  
+
+w2_EFR_yield = mantel(w2_dis_EFR, w2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w2_EFR_yield
+
+w1_2_EFR_yield = mantel(w1_2_EFR, w1_2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_2_EFR_yield
+
+# Coarse root legth vs yield : NOt significant
+
+w1_CR_yield = mantel(w1_dis_CR, w1_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_CR_yield  
+
+w2_CR_yield = mantel(w2_dis_CR, w2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w2_CR_yield
+
+w1_2_CR_yield = mantel(w1_2_CR, w1_2_dis_canola_yield_plot, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_2_CR_yield
+
+
+##### mantel test on week 1 data where FRL showed significant correlation with yield 
+
+w1_dist.abund
+w1_dis_FR
+w1_dis_canola
+
+w1_abund_FR_genotype = mantel.partial(w1_dist.abund, w1_dis_FR,w1_dis_canola, method = "spearman", permutations = 1000, na.rm = TRUE)
+w1_abund_FR_genotype
+
+
+
+## All data Controlling for environmental variables 
+
+
+abund_rbiomass_ev = mantel.partial(dist.abund, dist.rbiomass,dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_rbiomass_ev
+
+# abundance vs coarse  root length controlling for environmental variables
+
+abund_TCRL_ev = mantel.partial(dist.abund, dist.coarse_root_length_total,dist.enviro_variables, method = "pearson", permutations = 1000, na.rm = TRUE)
+abund_TCRL_ev
+
+
+#abundance vs total root length 
+abund_TRL_ev = mantel.partial(dist.abund, dist.root_length_total,dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TRL_ev
+
+# abundance vs total fine root length
+abund_TFRL_ev = mantel.partial(dist.abund, dist.fine_root_length_total,dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_TFRL_ev
+
+
+# abundance vs  fine root length
+abund_FRL_ev = mantel.partial(dist.abund, dist.FRL,dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_FRL_ev
+
+# abundance vs  Extra fine root length
+abund_EFRL_ev = mantel.partial(dist.abund, dist.extra_fine_root_length,dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+abund_EFRL_ev
+
+# envi vs coarse  root length
+fTCRL_ev = mantel(dist.root_length_total,dist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fTCRL_ev
+
+#######
+## Vegetative stage data: controlling for environmental variables
+
+
+#abundance vs root biomass
+vabund_rbiomass_ev = mantel.partial(vdist.abund, vdist.vrbiomass,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_rbiomass_ev
+
+#abundance vs total root length 
+vabund_TRL_ev = mantel.partial(vdist.abund, vdist.root_length_total,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TRL_ev
+
+# abundance vs total fine root length
+vabund_TFRL_ev = mantel.partial(vdist.abund, vdist.fine_root_length_total,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TFRL_ev
+
+
+# abundance vs  fine root length
+vabund_FRL_ev = mantel.partial(vdist.abund, vdist.FRL,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_FRL_ev
+
+# abundance vs  Extra fine root length
+vabund_EFRL_ev = mantel.partial(vdist.abund, vdist.EFRL,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_EFRL_ev
+
+
+# abundance vs coarse  root length
+vabund_TCRL_ev = mantel.partial(vdist.abund, vdist.coarse_root_length_total,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+vabund_TCRL_ev
+
+# envi vs coarse  root length
+fTCRL_ev = mantel(vdist.root_length_total,vdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fTCRL_ev
+##################
+
+# Flowering stage: controlling for environmental variables
+#abundance vs  root biomass 
+
+fabund_rbiomass_ev = mantel.partial(fdist.abund, fdist.rbiomass,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+fabund_rbiomass_ev
+
+#abundance vs total root length 
+fabund_TRL_ev = mantel.partial(fdist.abund, fdist.root_length_total,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_TRL_ev
+
+# abundance vs total fine root length
+fabund_TFRL_ev = mantel.partial(fdist.abund, fdist.fine_root_length_total,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_TFRL_ev
+
+
+# abundance vs  fine root length
+fabund_FRL_ev = mantel.partial(fdist.abund, fdist.FRL,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_FRL_ev
+
+# abundance vs  Extra fine root length
+fabund_EFRL_ev = mantel.partial(fdist.abund, fdist.EFRL,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_EFRL_ev
+
+
+# abundance vs coarse  root length
+fabund_TCRL_ev = mantel.partial(fdist.abund, fdist.coarse_root_length_total,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fabund_TCRL_ev
+
+
+
+# envi vs coarse  root length
+fTCRL_ev = mantel(fdist.root_length_total,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
+
+fTCRL_ev
