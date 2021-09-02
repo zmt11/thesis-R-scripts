@@ -1963,3 +1963,597 @@ fabund_TCRL_ev
 fTCRL_ev = mantel(fdist.root_length_total,fdist.enviro_variables, method = "spearman", permutations = 1000, na.rm = TRUE)
 
 fTCRL_ev
+
+## Additional Analysis
+# Linear regression: Bacteria by root traits
+
+library(vegan)
+
+mydata=Root_bacteria
+
+#distribution
+
+hist(log(mydata$Agrobacterium)) # normal dis
+hist(log(mydata$Arthrobacter))  # normal
+hist(log(mydata$Bacillus))# some zero
+
+hist(log(mydata$Bradyrhizobium))#normal
+hist(log(mydata$Flavobacterium))#normal
+hist(log(mydata$Gluconacetobacter))#normal
+hist(log(mydata$Lysobacter))#normal
+hist(log(mydata$Microbacterium))#normal
+hist(log(mydata$Paenibacillus))#normal
+hist(log(mydata$Pedobacter))#normal
+hist(log(mydata$Phyllobacterium))#normal
+hist(log(mydata$Pseudomonas))#normal
+hist(log(mydata$Rhizobium))#normal
+hist(log(mydata$Rhodococcus))#normal
+
+hist(log(mydata$Rhodoplanes))#normal
+hist(log(mydata$Skermanella))#normal
+hist(log(mydata$Stenotrophomonas))#normal
+hist(log(mydata$Variovorax))#normal
+hist(log(mydata$Xanthomonas))#normal
+
+#Fit linear models on log transformed bacterial genera abudnance and root traits
+  
+## Agrobacterium
+
+m1 = lm((log(mydata$Agrobacterium + 1))~log(mydata$Total_RL), data=mydata)
+m1_1 = lm((log(mydata$Agrobacterium + 1))~log(mydata$TFRL2mm), data=mydata)
+m1_2 = lm((log(mydata$Agrobacterium + 1))~log(mydata$FRL + 1), data=mydata)
+m1_3 = lm((log(mydata$Agrobacterium + 1))~log(mydata$ExtraFRL), data=mydata)
+m1_4 = lm((log(mydata$Agrobacterium + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m1)
+summary(m1_1)
+summary(m1_2)
+summary(m1_3)
+summary(m1_4)
+
+
+## Arthrobacter
+
+m2 = lm((log(mydata$Arthrobacter + 1))~log(mydata$Total_RL), data=mydata)
+m2_1 = lm((log(mydata$Arthrobacter + 1))~log(mydata$TFRL2mm), data=mydata)
+m2_2 = lm((log(mydata$Arthrobacter + 1))~log(mydata$FRL +1), data=mydata)
+m2_3 = lm((log(mydata$Arthrobacter + 1))~log(mydata$ExtraFRL), data=mydata)
+m2_4 = lm((log(mydata$Arthrobacter + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m2)
+summary(m2_1)
+summary(m2_2)
+summary(m2_3)
+summary(m2_4)
+
+## Bacillus
+m3 = lm((log(mydata$Bacillus + 1))~log(mydata$Total_RL), data=mydata)
+m3_1 = lm((log(mydata$Bacillus + 1))~log(mydata$TFRL2mm), data=mydata)
+m3_2 = lm((log(mydata$Bacillus + 1))~log(mydata$FRL + 1), data=mydata)
+m3_3 = lm((log(mydata$Bacillus + 1))~log(mydata$ExtraFRL), data=mydata)
+m3_4 = lm((log(mydata$Bacillus + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m3)
+summary(m3_1)
+summary(m3_2)
+summary(m3_3)
+summary(m3_4)
+
+##Bradyrhizobium
+m4 = lm((log(mydata$Bradyrhizobium + 1))~log(mydata$Total_RL), data=mydata)
+m4_1 = lm((log(mydata$Bradyrhizobium + 1))~log(mydata$TFRL2mm), data=mydata)
+m4_2 = lm((log(mydata$Bradyrhizobium + 1))~log(mydata$FRL + 1), data=mydata)
+m4_3 = lm((log(mydata$Bradyrhizobium + 1))~log(mydata$ExtraFRL), data=mydata)
+m4_4 = lm((log(mydata$Bradyrhizobium + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m4)
+summary(m4_1)
+summary(m4_2)
+summary(m4_3)
+summary(m4_4)
+
+## Flavobacterium
+
+m5 = lm((log(mydata$Flavobacterium + 1))~log(mydata$Total_RL), data=mydata)
+m5_1 = lm((log(mydata$Flavobacterium + 1))~log(mydata$TFRL2mm), data=mydata)
+m5_2 = lm((log(mydata$Flavobacterium + 1))~log(mydata$FRL + 1), data=mydata)
+m5_3 = lm((log(mydata$Flavobacterium + 1))~log(mydata$ExtraFRL), data=mydata)
+m5_4 = lm((log(mydata$Flavobacterium + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m5)
+summary(m5_1)
+summary(m5_2)
+summary(m5_3)
+summary(m5_4)
+
+## Gluconacetobacter
+
+m6 = lm((log(mydata$Gluconacetobacter + 1))~log(mydata$Total_RL), data=mydata)
+m6_1 = lm((log(mydata$Gluconacetobacter + 1))~log(mydata$TFRL2mm), data=mydata)
+m6_2 = lm((log(mydata$Gluconacetobacter + 1))~log(mydata$FRL + 1), data=mydata)
+m6_3 = lm((log(mydata$Gluconacetobacter + 1))~log(mydata$ExtraFRL), data=mydata)
+m6_4 = lm((log(mydata$Gluconacetobacter + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m6)
+summary(m6_1)
+summary(m6_2)
+summary(m6_3)
+summary(m6_4)
+
+
+## Lysobacter
+m7 = lm((log(mydata$Lysobacter + 1))~log(mydata$Total_RL), data=mydata)
+m7_1 = lm((log(mydata$Lysobacter + 1))~log(mydata$TFRL2mm), data=mydata)
+m7_2 = lm((log(mydata$Lysobacter + 1))~log(mydata$FRL + 1), data=mydata)
+m7_3 = lm((log(mydata$Lysobacter + 1))~log(mydata$ExtraFRL), data=mydata)
+m7_4 = lm((log(mydata$Lysobacter + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m7)
+summary(m7_1)
+summary(m7_2)
+summary(m7_3)
+summary(m7_4)
+
+
+## Microbacterium
+m8 = lm((log(mydata$Microbacterium + 1))~log(mydata$Total_RL), data=mydata)
+m8_1 = lm((log(mydata$Microbacterium + 1))~log(mydata$TFRL2mm), data=mydata)
+m8_2 = lm((log(mydata$Microbacterium + 1))~log(mydata$FRL + 1), data=mydata)
+m8_3 = lm((log(mydata$Microbacterium + 1))~log(mydata$ExtraFRL), data=mydata)
+m8_4 = lm((log(mydata$Microbacterium + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m8)
+summary(m8_1)
+summary(m8_2)
+summary(m8_3)
+summary(m8_4)
+
+## Paenibacillus
+m9 = lm((log(mydata$Paenibacillus + 1))~log(mydata$Total_RL), data=mydata)
+m9_1 = lm((log(mydata$Paenibacillus + 1))~log(mydata$TFRL2mm), data=mydata)
+m9_2 = lm((log(mydata$Paenibacillus + 1))~log(mydata$FRL + 1), data=mydata)
+m9_3 = lm((log(mydata$Paenibacillus + 1))~log(mydata$ExtraFRL), data=mydata)
+m9_4 = lm((log(mydata$Paenibacillus + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m9)
+summary(m9_1)
+summary(m9_2)
+summary(m9_3)
+summary(m9_4)
+
+## Pedobacter
+m10 = lm((log(mydata$Pedobacter + 1))~log(mydata$Total_RL), data=mydata)
+m10_1 = lm((log(mydata$Pedobacter + 1))~log(mydata$TFRL2mm), data=mydata)
+m10_2 = lm((log(mydata$Pedobacter + 1))~log(mydata$FRL + 1), data=mydata)
+m10_3 = lm((log(mydata$Pedobacter + 1))~log(mydata$ExtraFRL), data=mydata)
+m10_4 = lm((log(mydata$Pedobacter + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m10)
+summary(m10_1)
+summary(m10_2)
+summary(m10_3)
+summary(m10_4)
+
+## Phyllobacterium
+m11 = lm((log(mydata$Phyllobacterium + 1))~log(mydata$Total_RL), data=mydata)
+m11_1 = lm((log(mydata$Phyllobacterium + 1))~log(mydata$TFRL2mm), data=mydata)
+m11_2 = lm((log(mydata$Phyllobacterium + 1))~log(mydata$FRL + 1), data=mydata)
+m11_3 = lm((log(mydata$Phyllobacterium + 1))~log(mydata$ExtraFRL), data=mydata)
+m11_4 = lm((log(mydata$Phyllobacterium + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m11)
+summary(m11_1)
+summary(m11_2)
+summary(m11_3)
+summary(m11_4)
+
+## Pseudomonas
+m12 = lm((log(mydata$Pseudomonas + 1))~log(mydata$Total_RL), data=mydata)
+m12_1 = lm((log(mydata$Pseudomonas + 1))~log(mydata$TFRL2mm), data=mydata)
+m12_2 = lm((log(mydata$Pseudomonas + 1))~log(mydata$FRL + 1), data=mydata)
+m12_3 = lm((log(mydata$Pseudomonas + 1))~log(mydata$ExtraFRL), data=mydata)
+m12_4 = lm((log(mydata$Pseudomonas + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m12)
+summary(m12_1)
+summary(m12_2)
+summary(m12_3)
+summary(m12_4)
+
+## Rhizobium
+m13 = lm((log(mydata$Rhizobium + 1))~log(mydata$Total_RL), data=mydata)
+m13_1 = lm((log(mydata$Rhizobium + 1))~log(mydata$TFRL2mm), data=mydata)
+m13_2 = lm((log(mydata$Rhizobium + 1))~log(mydata$FRL + 1), data=mydata)
+m13_3 = lm((log(mydata$Rhizobium + 1))~log(mydata$ExtraFRL), data=mydata)
+m13_4 = lm((log(mydata$Rhizobium + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m13)
+summary(m13_1)
+summary(m13_2)
+summary(m13_3)
+summary(m13_4)
+
+## Rhodococcus
+m14 = lm((log(mydata$Rhodococcus + 1))~log(mydata$Total_RL), data=mydata)
+m14_1 = lm((log(mydata$Rhodococcus + 1))~log(mydata$TFRL2mm), data=mydata)
+m14_2 = lm((log(mydata$Rhodococcus + 1))~log(mydata$FRL + 1), data=mydata)
+m14_3 = lm((log(mydata$Rhodococcus + 1))~log(mydata$ExtraFRL), data=mydata)
+m14_4 = lm((log(mydata$Rhodococcus + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m14)
+summary(m14_1)
+summary(m14_2)
+summary(m14_3)
+summary(m14_4)
+
+
+## Rhodoplanes
+m15 = lm((log(mydata$Rhodoplanes + 1))~log(mydata$Total_RL), data=mydata)
+m15_1 = lm((log(mydata$Rhodoplanes + 1))~log(mydata$TFRL2mm), data=mydata)
+m15_2 = lm((log(mydata$Rhodoplanes + 1))~log(mydata$FRL + 1), data=mydata)
+m15_3 = lm((log(mydata$Rhodoplanes + 1))~log(mydata$ExtraFRL), data=mydata)
+m15_4 = lm((log(mydata$Rhodoplanes + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m15)
+summary(m15_1)
+summary(m15_2)
+summary(m15_3)
+summary(m15_4)
+
+## Skermanella
+m16 = lm((log(mydata$Skermanella + 1))~log(mydata$Total_RL), data=mydata)
+m16_1 = lm((log(mydata$Skermanella + 1))~log(mydata$TFRL2mm), data=mydata)
+m16_2 = lm((log(mydata$Skermanella + 1))~log(mydata$FRL + 1), data=mydata)
+m16_3 = lm((log(mydata$Skermanella + 1))~log(mydata$ExtraFRL), data=mydata)
+m16_4 = lm((log(mydata$Skermanella + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m16)
+summary(m16_1)
+summary(m16_2)
+summary(m16_3)
+summary(m16_4)
+
+##Stenotrophomonas
+m17 = lm((log(mydata$Stenotrophomonas + 1))~log(mydata$Total_RL), data=mydata)
+m17_1 = lm((log(mydata$Stenotrophomonas + 1))~log(mydata$TFRL2mm), data=mydata)
+m17_2 = lm((log(mydata$Stenotrophomonas + 1))~log(mydata$FRL + 1), data=mydata)
+m17_3 = lm((log(mydata$Stenotrophomonas + 1))~log(mydata$ExtraFRL), data=mydata)
+m17_4 = lm((log(mydata$Stenotrophomonas + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m17)
+summary(m17_1)
+summary(m17_2)
+summary(m17_3)
+summary(m17_4)
+
+## Variovorax
+m18 = lm((log(mydata$Variovorax + 1))~log(mydata$Total_RL), data=mydata)
+m18_1 = lm((log(mydata$Variovorax + 1))~log(mydata$TFRL2mm), data=mydata)
+m18_2 = lm((log(mydata$Variovorax + 1))~log(mydata$FRL + 1), data=mydata)
+m18_3 = lm((log(mydata$Variovorax + 1))~log(mydata$ExtraFRL), data=mydata)
+m18_4 = lm((log(mydata$Variovorax + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m18)
+summary(m18_1)
+summary(m18_2)
+summary(m18_3)
+summary(m18_4)
+
+
+## Xanthomonas
+m19 = lm((log(mydata$Xanthomonas + 1))~log(mydata$Total_RL), data=mydata)
+m19_1 = lm((log(mydata$Xanthomonas + 1))~log(mydata$TFRL2mm), data=mydata)
+m19_2 = lm((log(mydata$Xanthomonas + 1))~log(mydata$FRL + 1), data=mydata)
+m19_3 = lm((log(mydata$Xanthomonas + 1))~log(mydata$ExtraFRL), data=mydata)
+m19_4 = lm((log(mydata$Xanthomonas + 1))~log(mydata$CoarseRL + 1), data=mydata)
+
+#Summary
+summary(m19)
+summary(m19_1)
+summary(m19_2)
+summary(m19_3)
+summary(m19_4)
+
+
+#######################################
+
+# Vegetative stage data
+# Subset vegetative stage
+
+vmydata = subset(mydata, Growth.Stage=="Vegetative")
+
+#Fit linear models on log transformed bacterial genera abudnance and root traits: Vegetative
+
+## Agrobacterium
+
+m1 = lm((log(vmydata$Agrobacterium + 1))~log(vmydata$Total_RL), data=vmydata)
+m1_1 = lm((log(vmydata$Agrobacterium + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m1_2 = lm((log(vmydata$Agrobacterium + 1))~log(vmydata$FRL + 1), data=vmydata)
+m1_3 = lm((log(vmydata$Agrobacterium + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m1_4 = lm((log(vmydata$Agrobacterium + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m1)
+summary(m1_1)
+summary(m1_2)
+summary(m1_3)
+summary(m1_4)
+
+
+## Arthrobacter
+
+m2 = lm((log(vmydata$Arthrobacter + 1))~log(vmydata$Total_RL), data=vmydata)
+m2_1 = lm((log(vmydata$Arthrobacter + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m2_2 = lm((log(vmydata$Arthrobacter + 1))~log(vmydata$FRL +1), data=vmydata)
+m2_3 = lm((log(vmydata$Arthrobacter + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m2_4 = lm((log(vmydata$Arthrobacter + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m2)
+summary(m2_1)
+summary(m2_2)
+summary(m2_3)
+summary(m2_4)
+
+## Bacillus
+m3 = lm((log(vmydata$Bacillus + 1))~log(vmydata$Total_RL), data=vmydata)
+m3_1 = lm((log(vmydata$Bacillus + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m3_2 = lm((log(vmydata$Bacillus + 1))~log(vmydata$FRL + 1), data=vmydata)
+m3_3 = lm((log(vmydata$Bacillus + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m3_4 = lm((log(vmydata$Bacillus + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m3)
+summary(m3_1)
+summary(m3_2)
+summary(m3_3)
+summary(m3_4)
+
+##Bradyrhizobium
+m4 = lm((log(vmydata$Bradyrhizobium + 1))~log(vmydata$Total_RL), data=vmydata)
+m4_1 = lm((log(vmydata$Bradyrhizobium + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m4_2 = lm((log(vmydata$Bradyrhizobium + 1))~log(vmydata$FRL + 1), data=vmydata)
+m4_3 = lm((log(vmydata$Bradyrhizobium + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m4_4 = lm((log(vmydata$Bradyrhizobium + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m4)
+summary(m4_1)
+summary(m4_2)
+summary(m4_3)
+summary(m4_4)
+
+## Flavobacterium
+
+m5 = lm((log(vmydata$Flavobacterium + 1))~log(vmydata$Total_RL), data=vmydata)
+m5_1 = lm((log(vmydata$Flavobacterium + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m5_2 = lm((log(vmydata$Flavobacterium + 1))~log(vmydata$FRL + 1), data=vmydata)
+m5_3 = lm((log(vmydata$Flavobacterium + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m5_4 = lm((log(vmydata$Flavobacterium + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m5)
+summary(m5_1)
+summary(m5_2)
+summary(m5_3)
+summary(m5_4)
+
+## Gluconacetobacter
+
+m6 = lm((log(vmydata$Gluconacetobacter + 1))~log(vmydata$Total_RL), data=vmydata)
+m6_1 = lm((log(vmydata$Gluconacetobacter + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m6_2 = lm((log(vmydata$Gluconacetobacter + 1))~log(vmydata$FRL + 1), data=vmydata)
+m6_3 = lm((log(vmydata$Gluconacetobacter + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m6_4 = lm((log(vmydata$Gluconacetobacter + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m6)
+summary(m6_1)
+summary(m6_2)
+summary(m6_3)
+summary(m6_4)
+
+
+## Lysobacter
+m7 = lm((log(vmydata$Lysobacter + 1))~log(vmydata$Total_RL), data=vmydata)
+m7_1 = lm((log(vmydata$Lysobacter + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m7_2 = lm((log(vmydata$Lysobacter + 1))~log(vmydata$FRL + 1), data=vmydata)
+m7_3 = lm((log(vmydata$Lysobacter + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m7_4 = lm((log(vmydata$Lysobacter + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m7)
+summary(m7_1)
+summary(m7_2)
+summary(m7_3)
+summary(m7_4)
+
+
+## Microbacterium
+m8 = lm((log(vmydata$Microbacterium + 1))~log(vmydata$Total_RL), data=vmydata)
+m8_1 = lm((log(vmydata$Microbacterium + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m8_2 = lm((log(vmydata$Microbacterium + 1))~log(vmydata$FRL + 1), data=vmydata)
+m8_3 = lm((log(vmydata$Microbacterium + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m8_4 = lm((log(vmydata$Microbacterium + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m8)
+summary(m8_1)
+summary(m8_2)
+summary(m8_3)
+summary(m8_4)
+
+## Paenibacillus
+m9 = lm((log(vmydata$Paenibacillus + 1))~log(vmydata$Total_RL), data=vmydata)
+m9_1 = lm((log(vmydata$Paenibacillus + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m9_2 = lm((log(vmydata$Paenibacillus + 1))~log(vmydata$FRL + 1), data=vmydata)
+m9_3 = lm((log(vmydata$Paenibacillus + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m9_4 = lm((log(vmydata$Paenibacillus + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m9)
+summary(m9_1)
+summary(m9_2)
+summary(m9_3)
+summary(m9_4)
+
+## Pedobacter
+m10 = lm((log(vmydata$Pedobacter + 1))~log(vmydata$Total_RL), data=vmydata)
+m10_1 = lm((log(vmydata$Pedobacter + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m10_2 = lm((log(vmydata$Pedobacter + 1))~log(vmydata$FRL + 1), data=vmydata)
+m10_3 = lm((log(vmydata$Pedobacter + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m10_4 = lm((log(vmydata$Pedobacter + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m10)
+summary(m10_1)
+summary(m10_2)
+summary(m10_3)
+summary(m10_4)
+
+## Phyllobacterium
+m11 = lm((log(vmydata$Phyllobacterium + 1))~log(vmydata$Total_RL), data=vmydata)
+m11_1 = lm((log(vmydata$Phyllobacterium + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m11_2 = lm((log(vmydata$Phyllobacterium + 1))~log(vmydata$FRL + 1), data=vmydata)
+m11_3 = lm((log(vmydata$Phyllobacterium + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m11_4 = lm((log(vmydata$Phyllobacterium + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m11)
+summary(m11_1)
+summary(m11_2)
+summary(m11_3)
+summary(m11_4)
+
+## Pseudomonas
+m12 = lm((log(vmydata$Pseudomonas + 1))~log(vmydata$Total_RL), data=vmydata)
+m12_1 = lm((log(vmydata$Pseudomonas + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m12_2 = lm((log(vmydata$Pseudomonas + 1))~log(vmydata$FRL + 1), data=vmydata)
+m12_3 = lm((log(vmydata$Pseudomonas + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m12_4 = lm((log(vmydata$Pseudomonas + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m12)
+summary(m12_1)
+summary(m12_2)
+summary(m12_3)
+summary(m12_4)
+
+## Rhizobium
+m13 = lm((log(vmydata$Rhizobium + 1))~log(vmydata$Total_RL), data=vmydata)
+m13_1 = lm((log(vmydata$Rhizobium + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m13_2 = lm((log(vmydata$Rhizobium + 1))~log(vmydata$FRL + 1), data=vmydata)
+m13_3 = lm((log(vmydata$Rhizobium + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m13_4 = lm((log(vmydata$Rhizobium + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m13)
+summary(m13_1)
+summary(m13_2)
+summary(m13_3)
+summary(m13_4)
+
+## Rhodococcus
+m14 = lm((log(vmydata$Rhodococcus + 1))~log(vmydata$Total_RL), data=vmydata)
+m14_1 = lm((log(vmydata$Rhodococcus + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m14_2 = lm((log(vmydata$Rhodococcus + 1))~log(vmydata$FRL + 1), data=vmydata)
+m14_3 = lm((log(vmydata$Rhodococcus + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m14_4 = lm((log(vmydata$Rhodococcus + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m14)
+summary(m14_1)
+summary(m14_2)
+summary(m14_3)
+summary(m14_4)
+
+
+## Rhodoplanes
+m15 = lm((log(vmydata$Rhodoplanes + 1))~log(vmydata$Total_RL), data=vmydata)
+m15_1 = lm((log(vmydata$Rhodoplanes + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m15_2 = lm((log(vmydata$Rhodoplanes + 1))~log(vmydata$FRL + 1), data=vmydata)
+m15_3 = lm((log(vmydata$Rhodoplanes + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m15_4 = lm((log(vmydata$Rhodoplanes + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m15)
+summary(m15_1)
+summary(m15_2)
+summary(m15_3)
+summary(m15_4)
+
+## Skermanella
+m16 = lm((log(vmydata$Skermanella + 1))~log(vmydata$Total_RL), data=vmydata)
+m16_1 = lm((log(vmydata$Skermanella + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m16_2 = lm((log(vmydata$Skermanella + 1))~log(vmydata$FRL + 1), data=vmydata)
+m16_3 = lm((log(vmydata$Skermanella + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m16_4 = lm((log(vmydata$Skermanella + 1))~log(vmydata$CoarseRL), data=vmydata)
+
+#Summary
+summary(m16)
+summary(m16_1)
+summary(m16_2)
+summary(m16_3)
+summary(m16_4)
+
+##Stenotrophomonas
+m17 = lm((log(vmydata$Stenotrophomonas + 1))~log(vmydata$Total_RL), data=vmydata)
+m17_1 = lm((log(vmydata$Stenotrophomonas + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m17_2 = lm((log(vmydata$Stenotrophomonas + 1))~log(vmydata$FRL + 1), data=vmydata)
+m17_3 = lm((log(vmydata$Stenotrophomonas + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m17_4 = lm((log(vmydata$Stenotrophomonas + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m17)
+summary(m17_1)
+summary(m17_2)
+summary(m17_3)
+summary(m17_4)
+
+## Variovorax
+m18 = lm((log(vmydata$Variovorax + 1))~log(vmydata$Total_RL), data=vmydata)
+m18_1 = lm((log(vmydata$Variovorax + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m18_2 = lm((log(vmydata$Variovorax + 1))~log(vmydata$FRL + 1), data=vmydata)
+m18_3 = lm((log(vmydata$Variovorax + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m18_4 = lm((log(vmydata$Variovorax + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m18)
+summary(m18_1)
+summary(m18_2)
+summary(m18_3)
+summary(m18_4)
+
+
+## Xanthomonas
+m19 = lm((log(vmydata$Xanthomonas + 1))~log(vmydata$Total_RL), data=vmydata)
+m19_1 = lm((log(vmydata$Xanthomonas + 1))~log(vmydata$TFRL2mm), data=vmydata)
+m19_2 = lm((log(vmydata$Xanthomonas + 1))~log(vmydata$FRL + 1), data=vmydata)
+m19_3 = lm((log(vmydata$Xanthomonas + 1))~log(vmydata$ExtraFRL), data=vmydata)
+m19_4 = lm((log(vmydata$Xanthomonas + 1))~log(vmydata$CoarseRL + 1), data=vmydata)
+
+#Summary
+summary(m19)
+summary(m19_1)
+summary(m19_2)
+summary(m19_3)
+summary(m19_4)
+
