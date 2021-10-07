@@ -2642,8 +2642,8 @@ AIC(Agro_TRL_canola)# 809.1336
 summary(Agro_TRL_intc)
 summary(Agro_TRL_min)
 summary(Agro_TRL_full)
+summary(Agro_TRL_canola)
 
-#agro = lmer(LogAgrobacterium~ LogTotal_RL , random=~1|week, REML = FALSE, data=vmydata)
 #
 Agro_TRL_intc = lm(LogAgrobacterium ~ 1, data=vmydata)
 Agro_TFRL_min =  lm(LogAgrobacterium~ LogTFRL2mm, data=vmydata)
@@ -2658,6 +2658,8 @@ AIC(Agro_TFRL_canola)# 818.2143
 summary(Agro_TRL_intc)
 summary(Agro_TFRL_min)
 summary(Agro_TFRL_full)
+summary(Agro_TFRL_canola)
+
 #
 Agro_TRL_intc = lm(LogAgrobacterium ~ 1, data=vmydata)
 Agro_FRL_min =  lm(LogAgrobacterium~ LogFRL, data=vmydata)
@@ -2672,6 +2674,7 @@ AIC(Agro_FRL_canola) #812.1424
 summary(Agro_TRL_intc)
 summary(Agro_FRL_min)
 summary(Agro_FRL_full)
+summary(Agro_FRL_canola)
 
 #
 Agro_TRL_intc = lm(LogAgrobacterium ~ 1, data=vmydata)
@@ -2687,6 +2690,7 @@ AIC(Agro_EFRL_canola)#819.8206
 summary(Agro_TRL_intc)
 summary(Agro_EFRL_min)
 summary(Agro_EFRL_full)
+summary(Agro_EFRL_canola)
 
 #
 Agro_TRL_intc = lm(LogAgrobacterium ~ 1, data=vmydata)
@@ -2702,6 +2706,7 @@ AIC(Agro_CRL_canola)# 809.6799
 summary(Agro_TRL_intc)
 summary(Agro_CRL_min)
 summary(Agro_CRL_full)
+summary(Agro_CRL_canola)
 
 ## LogArthrobacter
 Arth_TRL_intc = lm(LogArthrobacter ~ 1, data=vmydata)
@@ -2717,6 +2722,8 @@ AIC(Arth_TRL_canola)#634.1522
 summary(Arth_TRL_intc)
 summary(Arth_TRL_min)
 summary(Arth_TRL_full)
+summary(Arth_TRL_canola)
+
 #
 Arth_TRL_intc = lm(LogArthrobacter ~ 1, data=vmydata)
 Arth_TFRL_min =  lm(LogArthrobacter~ LogTFRL2mm, data=vmydata)
@@ -2731,6 +2738,8 @@ AIC(Arth_TFRL_canola)# 635.4672
 summary(Arth_TRL_intc)
 summary(Arth_TFRL_min)
 summary(Arth_TFRL_full)
+summary(Arth_TFRL_canola)
+
 #
 
 Arth_TRL_intc = lm(LogArthrobacter ~ 1, data=vmydata)
@@ -2746,6 +2755,7 @@ AIC(Arth_FRL_canola)#627.256
 summary(Arth_TRL_intc)
 summary(Arth_FRL_min)
 summary(Arth_FRL_full)
+summary(Arth_FRL_canola)
 
 #
 Arth_TRL_intc = lm(LogArthrobacter ~ 1, data=vmydata)
@@ -2761,155 +2771,194 @@ AIC(Arth_EFRL_canola)# 638.9374
 summary(Arth_TRL_intc)
 summary(Arth_EFRL_min)
 summary(Arth_EFRL_full)
+summary(Arth_EFRL_canola)
 
 #
 
 Arth_TRL_intc = lm(LogArthrobacter ~ 1, data=vmydata)
 Arth_CRL_min =  lm(LogArthrobacter~ LogCoarseRL, data=vmydata)
 Arth_CRL_full = lme(LogArthrobacter~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Arth_CRL_canola = lme(LogArthrobacter~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
+
 
 AIC(Arth_TRL_intc) # 643.8118
 AIC(Arth_CRL_min) #  619.0473
 AIC(Arth_CRL_full)  # 618.058 
-
+AIC(Arth_CRL_canola)# 621.0473
 
 summary(Arth_TRL_intc)
 summary(Arth_CRL_min)
 summary(Arth_CRL_full)
+summary(Arth_CRL_canola)
 
 # LogBacillus
 
 Baci_TRL_intc = lm(LogBacillus ~ 1, data=vmydata)
 Baci_TRL_min =  lm(LogBacillus~ LogTotal_RL, data=vmydata)
 Baci_TRL_full = lme(LogBacillus~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Baci_TRL_canola = lme(LogBacillus~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Baci_TRL_intc) # 765.0129
 AIC(Baci_TRL_min) # 764.2373
 AIC(Baci_TRL_full) # 766.185
+AIC(Baci_TRL_canola) #766.2373
 
 summary(Baci_TRL_intc)
 summary(Baci_TRL_min)
 summary(Baci_TRL_full)
+summary(Baci_TRL_canola)
+
 #
 Baci_TRL_intc = lm(LogBacillus ~ 1, data=vmydata)
 Baci_TFRL_min =  lm(LogBacillus~ LogTFRL2mm, data=vmydata)
 Baci_TFRL_full = lme(LogBacillus~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Baci_TFRL_canola = lme(LogBacillus~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Baci_TRL_intc) # 765.0129
 AIC(Baci_TFRL_min) # 764.2985
 AIC(Baci_TFRL_full) # 766.1877   
+AIC(Baci_TFRL_canola) # 766.2985
 
 summary(Baci_TRL_intc)
 summary(Baci_TFRL_min)
 summary(Baci_TFRL_full)
+summary(Baci_TFRL_canola)
+
 #
 
 Baci_TRL_intc = lm(LogBacillus ~ 1, data=vmydata)
 Baci_FRL_min =  lm(LogBacillus~ LogFRL, data=vmydata)
 Baci_FRL_full = lme(LogBacillus~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Baci_FRL_canola = lme(LogBacillus~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Baci_TRL_intc) # 765.0129
 AIC(Baci_FRL_min) # 763.1344
 AIC(Baci_FRL_full) # 765.1344    
+AIC(Baci_FRL_canola) # 765.1344
 
 summary(Baci_TRL_intc)
 summary(Baci_FRL_min)
 summary(Baci_FRL_full)
+summary(Baci_FRL_canola)
 
 #
 Baci_TRL_intc = lm(LogBacillus ~ 1, data=vmydata)
 Baci_EFRL_min =  lm(LogBacillus~ LogExtraFRL, data=vmydata)
 Baci_EFRL_full = lme(LogBacillus~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Baci_EFRL_canola = lme(LogBacillus~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Baci_TRL_intc) # 765.0129
 AIC(Baci_EFRL_min) # 765.1629
 AIC(Baci_EFRL_full) # 766.5274   
+AIC(Baci_EFRL_canola) # 767.1629
 
 summary(Baci_TRL_intc)
 summary(Baci_EFRL_min)
 summary(Baci_EFRL_full)
+summary(Baci_EFRL_canola)
 
 #
 
 Baci_TRL_intc = lm(LogBacillus ~ 1, data=vmydata)
 Baci_CRL_min =  lm(LogBacillus~ LogCoarseRL, data=vmydata)
 Baci_CRL_full = lme(LogBacillus~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Baci_CRL_canola = lme(LogBacillus~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
+
 
 AIC(Baci_TRL_intc) # 765.0129
 AIC(Baci_CRL_min) #  763.3699
 AIC(Baci_CRL_full)  # 765.3699 
-
+AIC(Baci_CRL_canola) # 765.3699
 
 summary(Baci_TRL_intc)
 summary(Baci_CRL_min)
 summary(Baci_CRL_full)
+summary(Baci_CRL_canola)
+
 
 # LogBradyrhizobium
 
 Brady_TRL_intc = lm(LogBradyrhizobium ~ 1, data=vmydata)
 Brady_TRL_min =  lm(LogBradyrhizobium~ LogTotal_RL, data=vmydata)
 Brady_TRL_full = lme(LogBradyrhizobium~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Brady_TRL_canola = lme(LogBradyrhizobium~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Brady_TRL_intc) # 636.9378
 AIC(Brady_TRL_min) # 636.971
 AIC(Brady_TRL_full) # 634.628
+AIC(Brady_TRL_canola) # 638.971
 
 summary(Brady_TRL_intc)
 summary(Brady_TRL_min)
 summary(Brady_TRL_full)
+summary(Brady_TRL_canola)
+
 #
 Brady_TRL_intc = lm(LogBradyrhizobium ~ 1, data=vmydata)
 Brady_TFRL_min =  lm(LogBradyrhizobium~ LogTFRL2mm, data=vmydata)
 Brady_TFRL_full = lme(LogBradyrhizobium~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Brady_TFRL_canola = lme(LogBradyrhizobium~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Brady_TRL_intc) # 636.9378
 AIC(Brady_TFRL_min) # 637.2605
-AIC(Brady_TFRL_full) # 634.5889   
+AIC(Brady_TFRL_full) # 634.5889  
+AIC(Brady_TFRL_canola) # 639.2605
 
 summary(Brady_TRL_intc)
 summary(Brady_TFRL_min)
 summary(Brady_TFRL_full)
+summary(Brady_TFRL_canola)
+
 #
 
 Brady_TRL_intc = lm(LogBradyrhizobium ~ 1, data=vmydata)
 Brady_FRL_min =  lm(LogBradyrhizobium~ LogFRL, data=vmydata)
 Brady_FRL_full = lme(LogBradyrhizobium~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Brady_FRL_canola = lme(LogBradyrhizobium~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
+
 
 AIC(Brady_TRL_intc) # 636.9378
 AIC(Brady_FRL_min) # 635.842
-AIC(Brady_FRL_full) # 635.0145    
+AIC(Brady_FRL_full) # 635.0145   
+AIC(Brady_FRL_canola) # 637.842
 
 summary(Brady_TRL_intc)
 summary(Brady_FRL_min)
 summary(Brady_FRL_full)
+summary(Brady_FRL_canola)
 
 #
 Brady_TRL_intc = lm(LogBradyrhizobium ~ 1, data=vmydata)
 Brady_EFRL_min =  lm(LogBradyrhizobium~ LogExtraFRL, data=vmydata)
 Brady_EFRL_full = lme(LogBradyrhizobium~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Brady_EFRL_canola = lme(LogBradyrhizobium~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Brady_TRL_intc) # 636.9378
 AIC(Brady_EFRL_min) # 637.7426
 AIC(Brady_EFRL_full) # 634.4478   
+AIC(Brady_EFRL_canola)# 639.7426
 
 summary(Brady_TRL_intc)
 summary(Brady_EFRL_min)
 summary(Brady_EFRL_full)
+summary(Brady_EFRL_canola)
 
 #
 
 Brady_TRL_intc = lm(LogBradyrhizobium ~ 1, data=vmydata)
 Brady_CRL_min =  lm(LogBradyrhizobium~ LogCoarseRL, data=vmydata)
 Brady_CRL_full = lme(LogBradyrhizobium~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Brady_CRL_canola = lme(LogBradyrhizobium~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Brady_TRL_intc) # 636.9378
 AIC(Brady_CRL_min) #  631.6471
 AIC(Brady_CRL_full)  # 633.6471 
-
+AIC(Brady_CRL_canola)# 633.6471
 
 summary(Brady_TRL_intc)
 summary(Brady_CRL_min)
 summary(Brady_CRL_full)
+summary(Brady_CRL_canola)
 
 
 # LogFlavobacterium
@@ -2917,134 +2966,166 @@ summary(Brady_CRL_full)
 Flavo_TRL_intc = lm(LogFlavobacterium ~ 1, data=vmydata)
 Flavo_TRL_min =  lm(LogFlavobacterium~ LogTotal_RL, data=vmydata)
 Flavo_TRL_full = lme(LogFlavobacterium~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Flavo_TRL_canola = lme(LogFlavobacterium~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Flavo_TRL_intc) # 819.7526
 AIC(Flavo_TRL_min) # 807.2047
 AIC(Flavo_TRL_full) # 791.0682
+AIC(Flavo_TRL_canola) # 809.2047
 
 summary(Flavo_TRL_intc)
 summary(Flavo_TRL_min)
 summary(Flavo_TRL_full)
+summary(Flavo_TRL_canola)
+
 #
 Flavo_TRL_intc = lm(LogFlavobacterium ~ 1, data=vmydata)
 Flavo_TFRL_min =  lm(LogFlavobacterium~ LogTFRL2mm, data=vmydata)
 Flavo_TFRL_full = lme(LogFlavobacterium~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Flavo_TFRL_canola = lme(LogFlavobacterium~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Flavo_TRL_intc) # 819.7526
 AIC(Flavo_TFRL_min) # 808.4615
 AIC(Flavo_TFRL_full) # 791.0006   
+AIC(Flavo_TFRL_canola)# 810.4615
 
 summary(Flavo_TRL_intc)
 summary(Flavo_TFRL_min)
 summary(Flavo_TFRL_full)
+summary(Flavo_TFRL_canola)
+
 #
 
 Flavo_TRL_intc = lm(LogFlavobacterium ~ 1, data=vmydata)
 Flavo_FRL_min =  lm(LogFlavobacterium~ LogFRL, data=vmydata)
 Flavo_FRL_full = lme(LogFlavobacterium~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Flavo_FRL_canola = lme(LogFlavobacterium~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Flavo_TRL_intc) # 819.7526
 AIC(Flavo_FRL_min) # 802.107
 AIC(Flavo_FRL_full) # 790.815    
+AIC(Flavo_FRL_canola)# 804.107
 
 summary(Flavo_TRL_intc)
 summary(Flavo_FRL_min)
 summary(Flavo_FRL_full)
+summary(Flavo_FRL_canola)
 
 #
 Flavo_TRL_intc = lm(LogFlavobacterium ~ 1, data=vmydata)
 Flavo_EFRL_min =  lm(LogFlavobacterium~ LogExtraFRL, data=vmydata)
 Flavo_EFRL_full = lme(LogFlavobacterium~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Flavo_EFRL_canola = lme(LogFlavobacterium~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Flavo_TRL_intc) # 819.7526
 AIC(Flavo_EFRL_min) # 811.3891
 AIC(Flavo_EFRL_full) # 790.7954   
+AIC(Flavo_EFRL_canola)# 813.3891
 
 summary(Flavo_TRL_intc)
 summary(Flavo_EFRL_min)
 summary(Flavo_EFRL_full)
+summary(Flavo_EFRL_canola)
 
 #
 
 Flavo_TRL_intc = lm(LogFlavobacterium ~ 1, data=vmydata)
 Flavo_CRL_min =  lm(LogFlavobacterium~ LogCoarseRL, data=vmydata)
 Flavo_CRL_full = lme(LogFlavobacterium~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Flavo_CRL_canola = lme(LogFlavobacterium~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Flavo_TRL_intc) # 819.7526
 AIC(Flavo_CRL_min) #  802.0496
 AIC(Flavo_CRL_full)  # 790.6967 
-
+AIC(Flavo_CRL_canola) # 804.0496
 
 summary(Flavo_TRL_intc)
 summary(Flavo_CRL_min)
 summary(Flavo_CRL_full)
+summary(Flavo_CRL_canola)
 
 # LogGluconacetobacter
 
 Gluca_TRL_intc = lm(LogGluconacetobacter ~ 1, data=vmydata)
 Gluca_TRL_min =  lm(LogGluconacetobacter~ LogTotal_RL, data=vmydata)
 Gluca_TRL_full = lme(LogGluconacetobacter~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Gluca_TRL_canola = lme(LogGluconacetobacter~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Gluca_TRL_intc) # 833.3612
 AIC(Gluca_TRL_min) # 831.2576
 AIC(Gluca_TRL_full) # 833.2576
+AIC(Gluca_TRL_canola) # 833.1249
 
 summary(Gluca_TRL_intc)
 summary(Gluca_TRL_min)
 summary(Gluca_TRL_full)
+summary(Gluca_TRL_canola)
+
 #
 Gluca_TRL_intc = lm(LogGluconacetobacter ~ 1, data=vmydata)
 Gluca_TFRL_min =  lm(LogGluconacetobacter~ LogTFRL2mm, data=vmydata)
 Gluca_TFRL_full = lme(LogGluconacetobacter~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Gluca_TFRL_canola = lme(LogGluconacetobacter~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Gluca_TRL_intc) # 833.3612
 AIC(Gluca_TFRL_min) # 831.612
 AIC(Gluca_TFRL_full) # 833.612   
+AIC(Gluca_TFRL_canola)# 833.4815
 
 summary(Gluca_TRL_intc)
 summary(Gluca_TFRL_min)
 summary(Gluca_TFRL_full)
+summary(Gluca_TFRL_canola)
+
 #
 
 Gluca_TRL_intc = lm(LogGluconacetobacter ~ 1, data=vmydata)
 Gluca_FRL_min =  lm(LogGluconacetobacter~ LogFRL, data=vmydata)
 Gluca_FRL_full = lme(LogGluconacetobacter~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Gluca_FRL_canola = lme(LogGluconacetobacter~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Gluca_TRL_intc) # 833.3612
 AIC(Gluca_FRL_min) # 828.8474
 AIC(Gluca_FRL_full) # 830.8474    
+AIC(Gluca_FRL_canola) # 830.6041
 
 summary(Gluca_TRL_intc)
 summary(Gluca_FRL_min)
 summary(Gluca_FRL_full)
+summary(Gluca_FRL_canola)
 
 #
 Gluca_TRL_intc = lm(LogGluconacetobacter ~ 1, data=vmydata)
 Gluca_EFRL_min =  lm(LogGluconacetobacter~ LogExtraFRL, data=vmydata)
 Gluca_EFRL_full = lme(LogGluconacetobacter~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Gluca_EFRL_canola = lme(LogGluconacetobacter~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Gluca_TRL_intc) # 833.3612
 AIC(Gluca_EFRL_min) # 832.8365
 AIC(Gluca_EFRL_full) # 834.8365   
+AIC(Gluca_EFRL_canola) # 834.7453
 
 summary(Gluca_TRL_intc)
 summary(Gluca_EFRL_min)
 summary(Gluca_EFRL_full)
+summary(Gluca_EFRL_canola)
 
 #
 
 Gluca_TRL_intc = lm(LogGluconacetobacter ~ 1, data=vmydata)
 Gluca_CRL_min =  lm(LogGluconacetobacter~ LogCoarseRL, data=vmydata)
 Gluca_CRL_full = lme(LogGluconacetobacter~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Gluca_CRL_canola = lme(LogGluconacetobacter~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Gluca_TRL_intc) # 833.3612
 AIC(Gluca_CRL_min) #  827.7682
 AIC(Gluca_CRL_full)  # 829.7682 
-
+AIC(Gluca_CRL_canola) # 829.6935
 
 summary(Gluca_TRL_intc)
 summary(Gluca_CRL_min)
 summary(Gluca_CRL_full)
+summary(Gluca_CRL_canola)
 
 
 # LogLysobacter
@@ -3052,67 +3133,83 @@ summary(Gluca_CRL_full)
 Lysob_TRL_intc = lm(LogLysobacter ~ 1, data=vmydata)
 Lysob_TRL_min =  lm(LogLysobacter~ LogTotal_RL, data=vmydata)
 Lysob_TRL_full = lme(LogLysobacter~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Lysob_TRL_canola = lme(LogLysobacter~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Lysob_TRL_intc) # 801.0342
 AIC(Lysob_TRL_min) # 793.9852
 AIC(Lysob_TRL_full) # 783.3093
+AIC(Lysob_TRL_canola)# 795.9852
 
 summary(Lysob_TRL_intc)
 summary(Lysob_TRL_min)
 summary(Lysob_TRL_full)
+summary(Lysob_TRL_canola)
+
 #
 Lysob_TRL_intc = lm(LogLysobacter ~ 1, data=vmydata)
 Lysob_TFRL_min =  lm(LogLysobacter~ LogTFRL2mm, data=vmydata)
 Lysob_TFRL_full = lme(LogLysobacter~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Lysob_TFRL_canola = lme(LogLysobacter~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Lysob_TRL_intc) # 801.0342
 AIC(Lysob_TFRL_min) # 794.3988
 AIC(Lysob_TFRL_full) # 783.3983   
+AIC(Lysob_TFRL_canola) # 796.3988
 
 summary(Lysob_TRL_intc)
 summary(Lysob_TFRL_min)
 summary(Lysob_TFRL_full)
+summary(Lysob_TFRL_canola)
+
 #
 
 Lysob_TRL_intc = lm(LogLysobacter ~ 1, data=vmydata)
 Lysob_FRL_min =  lm(LogLysobacter~ LogFRL, data=vmydata)
 Lysob_FRL_full = lme(LogLysobacter~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Lysob_FRL_canola = lme(LogLysobacter~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Lysob_TRL_intc) # 801.0342
 AIC(Lysob_FRL_min) # 790.2604
 AIC(Lysob_FRL_full) # 782.384    
+AIC(Lysob_FRL_canola) # 792.2604
 
 summary(Lysob_TRL_intc)
 summary(Lysob_FRL_min)
 summary(Lysob_FRL_full)
+summary(Lysob_FRL_canola)
 
 #
 Lysob_TRL_intc = lm(LogLysobacter ~ 1, data=vmydata)
 Lysob_EFRL_min =  lm(LogLysobacter~ LogExtraFRL, data=vmydata)
 Lysob_EFRL_full = lme(LogLysobacter~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Lysob_EFRL_canola = lme(LogLysobacter~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Lysob_TRL_intc) # 801.0342
 AIC(Lysob_EFRL_min) # 796.6484
 AIC(Lysob_EFRL_full) # 783.5287   
+AIC(Lysob_EFRL_canola)# 798.6484
 
 summary(Lysob_TRL_intc)
 summary(Lysob_EFRL_min)
 summary(Lysob_EFRL_full)
+summary(Lysob_EFRL_canola)
 
 #
 
 Lysob_TRL_intc = lm(LogLysobacter ~ 1, data=vmydata)
 Lysob_CRL_min =  lm(LogLysobacter~ LogCoarseRL, data=vmydata)
 Lysob_CRL_full = lme(LogLysobacter~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Lysob_CRL_canola = lme(LogLysobacter~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Lysob_TRL_intc) # 801.0342
 AIC(Lysob_CRL_min) #  792.4796
 AIC(Lysob_CRL_full)  # 781.3166 
-
+AIC(Lysob_CRL_canola) # 794.4796
 
 summary(Lysob_TRL_intc)
 summary(Lysob_CRL_min)
 summary(Lysob_CRL_full)
+summary(Lysob_CRL_canola)
 
 
 # LogMicrobacterium
@@ -3121,268 +3218,332 @@ summary(Lysob_CRL_full)
 Microb_TRL_intc = lm(LogMicrobacterium ~ 1, data=vmydata)
 Microb_TRL_min =  lm(LogMicrobacterium~ LogTotal_RL, data=vmydata)
 Microb_TRL_full = lme(LogMicrobacterium~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Microb_TRL_canola = lme(LogMicrobacterium~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Microb_TRL_intc) # 807.5441
 AIC(Microb_TRL_min) # 805.9052
 AIC(Microb_TRL_full) # 807.0883
+AIC(Microb_TRL_canola)# 807.9052
 
 summary(Microb_TRL_intc)
 summary(Microb_TRL_min)
 summary(Microb_TRL_full)
+summary(Microb_TRL_canola)
+
 #
 Microb_TRL_intc = lm(LogMicrobacterium ~ 1, data=vmydata)
 Microb_TFRL_min =  lm(LogMicrobacterium~ LogTFRL2mm, data=vmydata)
 Microb_TFRL_full = lme(LogMicrobacterium~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Microb_TFRL_canola = lme(LogMicrobacterium~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Microb_TRL_intc) # 807.5441
 AIC(Microb_TFRL_min) # 806.151
 AIC(Microb_TFRL_full) # 807.1182   
+AIC(Microb_TFRL_canola) # 808.151
 
 summary(Microb_TRL_intc)
 summary(Microb_TFRL_min)
 summary(Microb_TFRL_full)
+summary(Microb_TFRL_canola)
+
 #
 
 Microb_TRL_intc = lm(LogMicrobacterium ~ 1, data=vmydata)
 Microb_FRL_min =  lm(LogMicrobacterium~ LogFRL, data=vmydata)
 Microb_FRL_full = lme(LogMicrobacterium~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Microb_FRL_canola = lme(LogMicrobacterium~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Microb_TRL_intc) # 807.5441
 AIC(Microb_FRL_min) # 803.8496
 AIC(Microb_FRL_full) # 805.6433    
+AIC(Microb_FRL_canola) # 805.8496
 
 summary(Microb_TRL_intc)
 summary(Microb_FRL_min)
 summary(Microb_FRL_full)
+summary(Microb_FRL_canola)
 
 #
 Microb_TRL_intc = lm(LogMicrobacterium ~ 1, data=vmydata)
 Microb_EFRL_min =  lm(LogMicrobacterium~ LogExtraFRL, data=vmydata)
 Microb_EFRL_full = lme(LogMicrobacterium~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Microb_EFRL_canola = lme(LogMicrobacterium~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Microb_TRL_intc) # 807.5441
 AIC(Microb_EFRL_min) # 806.9668
 AIC(Microb_EFRL_full) # 807.3369   
+AIC(Microb_EFRL_canola) # 808.9668
 
 summary(Microb_TRL_intc)
 summary(Microb_EFRL_min)
 summary(Microb_EFRL_full)
+summary(Microb_EFRL_canola)
 
 #
 
 Microb_TRL_intc = lm(LogMicrobacterium ~ 1, data=vmydata)
 Microb_CRL_min =  lm(LogMicrobacterium~ LogCoarseRL, data=vmydata)
 Microb_CRL_full = lme(LogMicrobacterium~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Microb_CRL_canola = lme(LogMicrobacterium~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Microb_TRL_intc) # 807.5441
 AIC(Microb_CRL_min) #  804.3644
 AIC(Microb_CRL_full)  # 806.3644 
-
+AIC(Microb_CRL_canola) # 806.3644
 
 summary(Microb_TRL_intc)
 summary(Microb_CRL_min)
 summary(Microb_CRL_full)
+summary(Microb_CRL_canola)
 
 # LogPaenibacillus
 
 Paeni_TRL_intc = lm(LogPaenibacillus ~ 1, data=vmydata)
 Paeni_TRL_min =  lm(LogPaenibacillus~ LogTotal_RL, data=vmydata)
 Paeni_TRL_full = lme(LogPaenibacillus~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Paeni_TRL_canola = lme(LogPaenibacillus~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Paeni_TRL_intc) # 714.7014
 AIC(Paeni_TRL_min) # 711.0452
 AIC(Paeni_TRL_full) # 713.0452
+AIC(Paeni_TRL_canola) # 713.0452
 
 summary(Paeni_TRL_intc)
 summary(Paeni_TRL_min)
 summary(Paeni_TRL_full)
+summary(Paeni_TRL_canola)
+
 #
 Paeni_TRL_intc = lm(LogPaenibacillus ~ 1, data=vmydata)
 Paeni_TFRL_min =  lm(LogPaenibacillus~ LogTFRL2mm, data=vmydata)
 Paeni_TFRL_full = lme(LogPaenibacillus~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Paeni_TFRL_canola = lme(LogPaenibacillus~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Paeni_TRL_intc) # 714.7014
 AIC(Paeni_TFRL_min) # 711.3612
 AIC(Paeni_TFRL_full) # 713.3612   
+AIC(Paeni_TFRL_canola)# 713.3612
 
 summary(Paeni_TRL_intc)
 summary(Paeni_TFRL_min)
 summary(Paeni_TFRL_full)
+summary(Paeni_TFRL_canola)
+
 #
 
 Paeni_TRL_intc = lm(LogPaenibacillus ~ 1, data=vmydata)
 Paeni_FRL_min =  lm(LogPaenibacillus~ LogFRL, data=vmydata)
 Paeni_FRL_full = lme(LogPaenibacillus~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Paeni_FRL_canola = lme(LogPaenibacillus~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Paeni_TRL_intc) # 714.7014
 AIC(Paeni_FRL_min) # 708.7719
 AIC(Paeni_FRL_full) # 710.7719    
+AIC(Paeni_FRL_canola) # 710.7719
 
 summary(Paeni_TRL_intc)
 summary(Paeni_FRL_min)
 summary(Paeni_FRL_full)
+summary(Paeni_FRL_canola)
 
 #
 Paeni_TRL_intc = lm(LogPaenibacillus ~ 1, data=vmydata)
 Paeni_EFRL_min =  lm(LogPaenibacillus~ LogExtraFRL, data=vmydata)
 Paeni_EFRL_full = lme(LogPaenibacillus~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Paeni_EFRL_canola = lme(LogPaenibacillus~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Paeni_TRL_intc) # 714.7014
 AIC(Paeni_EFRL_min) # 712.9514
 AIC(Paeni_EFRL_full) # 714.9514   
+AIC(Paeni_EFRL_canola) # 714.9514
 
 summary(Paeni_TRL_intc)
 summary(Paeni_EFRL_min)
 summary(Paeni_EFRL_full)
+summary(Paeni_EFRL_canola)
 
 #
 
 Paeni_TRL_intc = lm(LogPaenibacillus ~ 1, data=vmydata)
 Paeni_CRL_min =  lm(LogPaenibacillus~ LogCoarseRL, data=vmydata)
 Paeni_CRL_full = lme(LogPaenibacillus~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Paeni_CRL_canola = lme(LogPaenibacillus~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Paeni_TRL_intc) # 714.7014
 AIC(Paeni_CRL_min) #  709.2995
 AIC(Paeni_CRL_full)  # 711.2995 
-
+AIC(Paeni_CRL_canola) # 711.2995
 
 summary(Paeni_TRL_intc)
 summary(Paeni_CRL_min)
 summary(Paeni_CRL_full)
+summary(Paeni_CRL_canola)
 
 # LogPedobacter
 
 Pedob_TRL_intc = lm(LogPedobacter ~ 1, data=vmydata)
 Pedob_TRL_min =  lm(LogPedobacter~ LogTotal_RL, data=vmydata)
 Pedob_TRL_full = lme(LogPedobacter~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Pedob_TRL_canola = lme(LogPedobacter~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pedob_TRL_intc) # 834.6184
 AIC(Pedob_TRL_min) # 791.4457
 AIC(Pedob_TRL_full) # 773.7478
+AIC(Pedob_TRL_canola) # 793.4457
 
 summary(Pedob_TRL_intc)
 summary(Pedob_TRL_min)
 summary(Pedob_TRL_full)
+summary(Pedob_TRL_canola)
+
 #
 Pedob_TRL_intc = lm(LogPedobacter ~ 1, data=vmydata)
 Pedob_TFRL_min =  lm(LogPedobacter~ LogTFRL2mm, data=vmydata)
 Pedob_TFRL_full = lme(LogPedobacter~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Pedob_TFRL_canola = lme(LogPedobacter~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pedob_TRL_intc) # 834.6184
 AIC(Pedob_TFRL_min) # 792.838
 AIC(Pedob_TFRL_full) # 773.8303   
+AIC(Pedob_TFRL_canola) # 794.838
 
 summary(Pedob_TRL_intc)
 summary(Pedob_TFRL_min)
 summary(Pedob_TFRL_full)
+summary(Pedob_TFRL_canola)
+
 #
 
 Pedob_TRL_intc = lm(LogPedobacter ~ 1, data=vmydata)
 Pedob_FRL_min =  lm(LogPedobacter~ LogFRL, data=vmydata)
 Pedob_FRL_full = lme(LogPedobacter~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Pedob_FRL_canola = lme(LogPedobacter~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pedob_TRL_intc) # 834.6184
 AIC(Pedob_FRL_min) # 788.8233
 AIC(Pedob_FRL_full) # 773.321    
+AIC(Pedob_FRL_canola) # 790.8233
 
 summary(Pedob_TRL_intc)
 summary(Pedob_FRL_min)
 summary(Pedob_FRL_full)
+summary(Pedob_FRL_canola)
 
 #
 Pedob_TRL_intc = lm(LogPedobacter ~ 1, data=vmydata)
 Pedob_EFRL_min =  lm(LogPedobacter~ LogExtraFRL, data=vmydata)
 Pedob_EFRL_full = lme(LogPedobacter~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Pedob_EFRL_canola = lme(LogPedobacter~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pedob_TRL_intc) # 834.6184
 AIC(Pedob_EFRL_min) # 800.0128
 AIC(Pedob_EFRL_full) # 775.4477   
+AIC(Pedob_EFRL_canola) # 802.0128
 
 summary(Pedob_TRL_intc)
 summary(Pedob_EFRL_min)
 summary(Pedob_EFRL_full)
+summary(Pedob_EFRL_canola)
 
 #
 
 Pedob_TRL_intc = lm(LogPedobacter ~ 1, data=vmydata)
 Pedob_CRL_min =  lm(LogPedobacter~ LogCoarseRL, data=vmydata)
 Pedob_CRL_full = lme(LogPedobacter~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Pedob_CRL_canola = lme(LogPedobacter~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pedob_TRL_intc) # 834.6184
 AIC(Pedob_CRL_min) #  807.1873
 AIC(Pedob_CRL_full)  # 779.3108 
-
+AIC(Pedob_CRL_canola) # 809.1873
 
 summary(Pedob_TRL_intc)
 summary(Pedob_CRL_min)
 summary(Pedob_CRL_full)
+summary(Pedob_CRL_canola)
 
 # LogPhyllobacterium
 
 Phyll_TRL_intc = lm(LogPhyllobacterium ~ 1, data=vmydata)
 Phyll_TRL_min =  lm(LogPhyllobacterium~ LogTotal_RL, data=vmydata)
 Phyll_TRL_full = lme(LogPhyllobacterium~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Phyll_TRL_canola = lme(LogPhyllobacterium~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Phyll_TRL_intc) # 792.9627
 AIC(Phyll_TRL_min) # 791.4127
 AIC(Phyll_TRL_full) # 793.3943
+AIC(Phyll_TRL_canola)# 793.4127
 
 summary(Phyll_TRL_intc)
 summary(Phyll_TRL_min)
 summary(Phyll_TRL_full)
+summary(Phyll_TRL_canola)
+
 #
 Phyll_TRL_intc = lm(LogPhyllobacterium ~ 1, data=vmydata)
 Phyll_TFRL_min =  lm(LogPhyllobacterium~ LogTFRL2mm, data=vmydata)
 Phyll_TFRL_full = lme(LogPhyllobacterium~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Phyll_TFRL_canola = lme(LogPhyllobacterium~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Phyll_TRL_intc) # 792.9627
 AIC(Phyll_TFRL_min) # 791.0823
 AIC(Phyll_TFRL_full) # 793.0769   
+AIC(Phyll_TFRL_canola) # 793.0823
 
 summary(Phyll_TRL_intc)
 summary(Phyll_TFRL_min)
 summary(Phyll_TFRL_full)
+summary(Phyll_TFRL_canola)
+
 #
 
 Phyll_TRL_intc = lm(LogPhyllobacterium ~ 1, data=vmydata)
 Phyll_FRL_min =  lm(LogPhyllobacterium~ LogFRL, data=vmydata)
 Phyll_FRL_full = lme(LogPhyllobacterium~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Phyll_FRL_canola = lme(LogPhyllobacterium~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Phyll_TRL_intc) # 792.9627
 AIC(Phyll_FRL_min) # 793.6982
 AIC(Phyll_FRL_full) # 795.687    
+AIC(Phyll_FRL_canola) # 795.6982
 
 summary(Phyll_TRL_intc)
 summary(Phyll_FRL_min)
 summary(Phyll_FRL_full)
+summary(Phyll_FRL_canola)
 
 #
 Phyll_TRL_intc = lm(LogPhyllobacterium ~ 1, data=vmydata)
 Phyll_EFRL_min =  lm(LogPhyllobacterium~ LogExtraFRL, data=vmydata)
 Phyll_EFRL_full = lme(LogPhyllobacterium~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Phyll_EFRL_canola = lme(LogPhyllobacterium~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Phyll_TRL_intc) # 792.9627
 AIC(Phyll_EFRL_min) # 790.2013
 AIC(Phyll_EFRL_full) # 775.4477   
+AIC(Phyll_EFRL_canola)# 792.2013
 
 summary(Phyll_TRL_intc)
 summary(Phyll_EFRL_min)
 summary(Phyll_EFRL_full)
+summary(Phyll_EFRL_canola)
 
 #
 
 Phyll_TRL_intc = lm(LogPhyllobacterium ~ 1, data=vmydata)
 Phyll_CRL_min =  lm(LogPhyllobacterium~ LogCoarseRL, data=vmydata)
 Phyll_CRL_full = lme(LogPhyllobacterium~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Phyll_CRL_canola = lme(LogPhyllobacterium~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Phyll_TRL_intc) # 792.9627
 AIC(Phyll_CRL_min) #  794.8905
 AIC(Phyll_CRL_full)  # 779.3108 
-
+AIC(Phyll_CRL_canola) # 796.8905
 
 summary(Phyll_TRL_intc)
 summary(Phyll_CRL_min)
 summary(Phyll_CRL_full)
+summary(Phyll_CRL_canola)
 
 # LogPseudomonas
 
@@ -3390,67 +3551,83 @@ summary(Phyll_CRL_full)
 Pseud_TRL_intc = lm(LogPseudomonas ~ 1, data=vmydata)
 Pseud_TRL_min =  lm(LogPseudomonas~ LogTotal_RL, data=vmydata)
 Pseud_TRL_full = lme(LogPseudomonas~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Pseud_TRL_canola = lme(LogPseudomonas~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pseud_TRL_intc) # 828.8763
 AIC(Pseud_TRL_min) # 814.1951
 AIC(Pseud_TRL_full) # 804.3425
+AIC(Pseud_TRL_canola) # 816.1951
 
 summary(Pseud_TRL_intc)
 summary(Pseud_TRL_min)
 summary(Pseud_TRL_full)
+summary(Pseud_TRL_canola)
+
 #
 Pseud_TRL_intc = lm(LogPseudomonas ~ 1, data=vmydata)
 Pseud_TFRL_min =  lm(LogPseudomonas~ LogTFRL2mm, data=vmydata)
 Pseud_TFRL_full = lme(LogPseudomonas~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Pseud_TFRL_canola = lme(LogPseudomonas~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pseud_TRL_intc) # 828.8763
 AIC(Pseud_TFRL_min) # 815.6096
 AIC(Pseud_TFRL_full) # 804.4157   
+AIC(Pseud_TFRL_canola) # 817.6096
 
 summary(Pseud_TRL_intc)
 summary(Pseud_TFRL_min)
 summary(Pseud_TFRL_full)
+summary(Pseud_TFRL_canola)
+
 #
 
 Pseud_TRL_intc = lm(LogPseudomonas ~ 1, data=vmydata)
 Pseud_FRL_min =  lm(LogPseudomonas~ LogFRL, data=vmydata)
 Pseud_FRL_full = lme(LogPseudomonas~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Pseud_FRL_canola = lme(LogPseudomonas~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pseud_TRL_intc) # 828.8763
 AIC(Pseud_FRL_min) # 814.1481
 AIC(Pseud_FRL_full) # 804.4037    
+AIC(Pseud_FRL_canola) # 816.1481
 
 summary(Pseud_TRL_intc)
 summary(Pseud_FRL_min)
 summary(Pseud_FRL_full)
+summary(Pseud_FRL_canola)
 
 #
 Pseud_TRL_intc = lm(LogPseudomonas ~ 1, data=vmydata)
 Pseud_EFRL_min =  lm(LogPseudomonas~ LogExtraFRL, data=vmydata)
 Pseud_EFRL_full = lme(LogPseudomonas~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Pseud_EFRL_canola = lme(LogPseudomonas~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pseud_TRL_intc) # 828.8763
 AIC(Pseud_EFRL_min) # 817.4361
 AIC(Pseud_EFRL_full) # 804.4231   
+AIC(Pseud_EFRL_canola) # 819.4361
 
 summary(Pseud_TRL_intc)
 summary(Pseud_EFRL_min)
 summary(Pseud_EFRL_full)
+summary(Pseud_EFRL_canola)
 
 #
 
 Pseud_TRL_intc = lm(LogPseudomonas ~ 1, data=vmydata)
 Pseud_CRL_min =  lm(LogPseudomonas~ LogCoarseRL, data=vmydata)
 Pseud_CRL_full = lme(LogPseudomonas~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Pseud_CRL_canola = lme(LogPseudomonas~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Pseud_TRL_intc) # 828.8763
 AIC(Pseud_CRL_min) #  807.5735
 AIC(Pseud_CRL_full)  # 803.2946 
-
+AIC(Pseud_CRL_canola)# 809.5735
 
 summary(Pseud_TRL_intc)
 summary(Pseud_CRL_min)
 summary(Pseud_CRL_full)
+summary(Pseud_CRL_canola)
 
 
 # LogRhizobium
@@ -3458,134 +3635,166 @@ summary(Pseud_CRL_full)
 Rhizo_TRL_intc = lm(LogRhizobium ~ 1, data=vmydata)
 Rhizo_TRL_min =  lm(LogRhizobium~ LogTotal_RL, data=vmydata)
 Rhizo_TRL_full = lme(LogRhizobium~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Rhizo_TRL_canola = lme(LogRhizobium~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhizo_TRL_intc) # 815.1382
 AIC(Rhizo_TRL_min) # 809.3474
 AIC(Rhizo_TRL_full) # 809.9591
+AIC(Rhizo_TRL_canola) # 810.2205
 
 summary(Rhizo_TRL_intc)
 summary(Rhizo_TRL_min)
 summary(Rhizo_TRL_full)
+summary(Rhizo_TRL_canola)
+
 #
 Rhizo_TRL_intc = lm(LogRhizobium ~ 1, data=vmydata)
 Rhizo_TFRL_min =  lm(LogRhizobium~ LogTFRL2mm, data=vmydata)
 Rhizo_TFRL_full = lme(LogRhizobium~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Rhizo_TFRL_canola = lme(LogRhizobium~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhizo_TRL_intc) # 815.1382
 AIC(Rhizo_TFRL_min) # 809.8495
 AIC(Rhizo_TFRL_full) # 810.1168   
+AIC(Rhizo_TFRL_canola) # 810.7412
 
 summary(Rhizo_TRL_intc)
 summary(Rhizo_TFRL_min)
 summary(Rhizo_TFRL_full)
+summary(Rhizo_TFRL_canola)
+
 #
 
 Rhizo_TRL_intc = lm(LogRhizobium ~ 1, data=vmydata)
 Rhizo_FRL_min =  lm(LogRhizobium~ LogFRL, data=vmydata)
 Rhizo_FRL_full = lme(LogRhizobium~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Rhizo_FRL_canola = lme(LogRhizobium~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhizo_TRL_intc) # 815.1382
 AIC(Rhizo_FRL_min) # 806.6431
 AIC(Rhizo_FRL_full) # 808.4139    
+AIC(Rhizo_FRL_canola) # 807.3254
 
 summary(Rhizo_TRL_intc)
 summary(Rhizo_FRL_min)
 summary(Rhizo_FRL_full)
+summary(Rhizo_FRL_canola)
 
 #
 Rhizo_TRL_intc = lm(LogRhizobium ~ 1, data=vmydata)
 Rhizo_EFRL_min =  lm(LogRhizobium~ LogExtraFRL, data=vmydata)
 Rhizo_EFRL_full = lme(LogRhizobium~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Rhizo_EFRL_canola = lme(LogRhizobium~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhizo_TRL_intc) # 815.1382
 AIC(Rhizo_EFRL_min) # 811.2033
 AIC(Rhizo_EFRL_full) # 810.418   
+AIC(Rhizo_EFRL_canola) # 812.279
 
 summary(Rhizo_TRL_intc)
 summary(Rhizo_EFRL_min)
 summary(Rhizo_EFRL_full)
+summary(Rhizo_EFRL_canola)
 
 #
 
 Rhizo_TRL_intc = lm(LogRhizobium ~ 1, data=vmydata)
 Rhizo_CRL_min =  lm(LogRhizobium~ LogCoarseRL, data=vmydata)
 Rhizo_CRL_full = lme(LogRhizobium~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Rhizo_CRL_canola = lme(LogRhizobium~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhizo_TRL_intc) # 815.1382
 AIC(Rhizo_CRL_min) #  806.2488
 AIC(Rhizo_CRL_full)  # 807.7289 
-
+AIC(Rhizo_CRL_canola) # 807.4049
 
 summary(Rhizo_TRL_intc)
 summary(Rhizo_CRL_min)
 summary(Rhizo_CRL_full)
+summary(Rhizo_CRL_canola)
 
 # LogRhodococcus
 
 Rhodo_TRL_intc = lm(LogRhodococcus ~ 1, data=vmydata)
 Rhodo_TRL_min =  lm(LogRhodococcus~ LogTotal_RL, data=vmydata)
 Rhodo_TRL_full = lme(LogRhodococcus~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Rhodo_TRL_canola = lme(LogRhodococcus~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodo_TRL_intc) # 695.5589
 AIC(Rhodo_TRL_min) # 697.4227
 AIC(Rhodo_TRL_full) # 696.1386
+AIC(Rhodo_TRL_canola)# 699.4227
 
 summary(Rhodo_TRL_intc)
 summary(Rhodo_TRL_min)
 summary(Rhodo_TRL_full)
+summary(Rhodo_TRL_canola)
+
 #
 Rhodo_TRL_intc = lm(LogRhodococcus ~ 1, data=vmydata)
 Rhodo_TFRL_min =  lm(LogRhodococcus~ LogTFRL2mm, data=vmydata)
 Rhodo_TFRL_full = lme(LogRhodococcus~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Rhodo_TFRL_canola = lme(LogRhodococcus~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodo_TRL_intc) # 695.5589
 AIC(Rhodo_TFRL_min) # 697.446
 AIC(Rhodo_TFRL_full) # 696.2856   
+AIC(Rhodo_TFRL_canola)# 699.446
 
 summary(Rhodo_TRL_intc)
 summary(Rhodo_TFRL_min)
 summary(Rhodo_TFRL_full)
+summary(Rhodo_TFRL_canola)
+
 #
 
 Rhodo_TRL_intc = lm(LogRhodococcus ~ 1, data=vmydata)
 Rhodo_FRL_min =  lm(LogRhodococcus~ LogFRL, data=vmydata)
 Rhodo_FRL_full = lme(LogRhodococcus~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Rhodo_FRL_canola = lme(LogRhodococcus~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodo_TRL_intc) # 695.5589
 AIC(Rhodo_FRL_min) # 697.0722
 AIC(Rhodo_FRL_full) # 697.0549    
+AIC(Rhodo_FRL_canola) # 699.0722
 
 summary(Rhodo_TRL_intc)
 summary(Rhodo_FRL_min)
 summary(Rhodo_FRL_full)
+summary(Rhodo_FRL_canola)
 
 #
 Rhodo_TRL_intc = lm(LogRhodococcus ~ 1, data=vmydata)
 Rhodo_EFRL_min =  lm(LogRhodococcus~ LogExtraFRL, data=vmydata)
 Rhodo_EFRL_full = lme(LogRhodococcus~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Rhodo_EFRL_canola = lme(LogRhodococcus~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodo_TRL_intc) # 695.5589
 AIC(Rhodo_EFRL_min) # 697.5141
 AIC(Rhodo_EFRL_full) # 696.2347   
+AIC(Rhodo_EFRL_canola) # 699.5141
 
 summary(Rhodo_TRL_intc)
 summary(Rhodo_EFRL_min)
 summary(Rhodo_EFRL_full)
+summary(Rhodo_EFRL_canola)
 
 #
 
 Rhodo_TRL_intc = lm(LogRhodococcus ~ 1, data=vmydata)
 Rhodo_CRL_min =  lm(LogRhodococcus~ LogCoarseRL, data=vmydata)
 Rhodo_CRL_full = lme(LogRhodococcus~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Rhodo_CRL_canola = lme(LogRhodococcus~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodo_TRL_intc) # 695.5589
 AIC(Rhodo_CRL_min) #  696.8365
 AIC(Rhodo_CRL_full)  # 696.3075 
-
+AIC(Rhodo_CRL_canola)# 698.8365
 
 summary(Rhodo_TRL_intc)
 summary(Rhodo_CRL_min)
 summary(Rhodo_CRL_full)
+summary(Rhodo_CRL_canola)
 
 # LogRhodoplanes
 
@@ -3593,67 +3802,83 @@ summary(Rhodo_CRL_full)
 Rhodop_TRL_intc = lm(LogRhodoplanes ~ 1, data=vmydata)
 Rhodop_TRL_min =  lm(LogRhodoplanes~ LogTotal_RL, data=vmydata)
 Rhodop_TRL_full = lme(LogRhodoplanes~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Rhodop_TRL_canola = lme(LogRhodoplanes~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodop_TRL_intc) # 833.0205
 AIC(Rhodop_TRL_min) # 833.2084
 AIC(Rhodop_TRL_full) # 835.2084
+AIC(Rhodop_TRL_canola)# 835.2084
 
 summary(Rhodop_TRL_intc)
 summary(Rhodop_TRL_min)
 summary(Rhodop_TRL_full)
+summary(Rhodop_TRL_canola)
+
 #
 Rhodop_TRL_intc = lm(LogRhodoplanes ~ 1, data=vmydata)
 Rhodop_TFRL_min =  lm(LogRhodoplanes~ LogTFRL2mm, data=vmydata)
 Rhodop_TFRL_full = lme(LogRhodoplanes~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Rhodop_TFRL_canola = lme(LogRhodoplanes~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodop_TRL_intc) # 833.0205
 AIC(Rhodop_TFRL_min) # 833.2867
 AIC(Rhodop_TFRL_full) # 835.2867   
+AIC(Rhodop_TFRL_canola)# 835.2867
 
 summary(Rhodop_TRL_intc)
 summary(Rhodop_TFRL_min)
 summary(Rhodop_TFRL_full)
+summary(Rhodop_TFRL_canola)
+
 #
 
 Rhodop_TRL_intc = lm(LogRhodoplanes ~ 1, data=vmydata)
 Rhodop_FRL_min =  lm(LogRhodoplanes~ LogFRL, data=vmydata)
 Rhodop_FRL_full = lme(LogRhodoplanes~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Rhodop_FRL_canola = lme(LogRhodoplanes~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodop_TRL_intc) # 833.0205
 AIC(Rhodop_FRL_min) # 834.7588
 AIC(Rhodop_FRL_full) # 836.7588    
+AIC(Rhodop_FRL_canola) # 836.7588
 
 summary(Rhodop_TRL_intc)
 summary(Rhodop_FRL_min)
 summary(Rhodop_FRL_full)
+summary(Rhodop_FRL_canola)
 
 #
 Rhodop_TRL_intc = lm(LogRhodoplanes ~ 1, data=vmydata)
 Rhodop_EFRL_min =  lm(LogRhodoplanes~ LogExtraFRL, data=vmydata)
 Rhodop_EFRL_full = lme(LogRhodoplanes~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Rhodop_EFRL_canola = lme(LogRhodoplanes~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodop_TRL_intc) # 833.0205
 AIC(Rhodop_EFRL_min) # 832.641
 AIC(Rhodop_EFRL_full) # 834.641   
+AIC(Rhodop_EFRL_canola)# 834.641
 
 summary(Rhodop_TRL_intc)
 summary(Rhodop_EFRL_min)
 summary(Rhodop_EFRL_full)
+summary(Rhodop_EFRL_canola)
 
 #
 
 Rhodop_TRL_intc = lm(LogRhodoplanes ~ 1, data=vmydata)
 Rhodop_CRL_min =  lm(LogRhodoplanes~ LogCoarseRL, data=vmydata)
 Rhodop_CRL_full = lme(LogRhodoplanes~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Rhodop_CRL_canola = lme(LogRhodoplanes~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Rhodop_TRL_intc) # 833.0205
 AIC(Rhodop_CRL_min) #  833.6836
 AIC(Rhodop_CRL_full)  # 835.6836 
-
+AIC(Rhodop_CRL_canola) # 835.6836
 
 summary(Rhodop_TRL_intc)
 summary(Rhodop_CRL_min)
 summary(Rhodop_CRL_full)
+summary(Rhodop_CRL_canola)
 
 
 # LogSkermanella
@@ -3662,134 +3887,167 @@ summary(Rhodop_CRL_full)
 Skerma_TRL_intc = lm(LogSkermanella ~ 1, data=vmydata)
 Skerma_TRL_min =  lm(LogSkermanella~ LogTotal_RL, data=vmydata)
 Skerma_TRL_full = lme(LogSkermanella~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Skerma_TRL_canola = lme(LogSkermanella~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Skerma_TRL_intc) # 691.7127
 AIC(Skerma_TRL_min) # 691.8137
 AIC(Skerma_TRL_full) # 691.6617
+AIC(Skerma_TRL_canola)# 693.8137
 
 summary(Skerma_TRL_intc)
 summary(Skerma_TRL_min)
 summary(Skerma_TRL_full)
+summary(Skerma_TRL_canola)
+
 #
 Skerma_TRL_intc = lm(LogSkermanella ~ 1, data=vmydata)
 Skerma_TFRL_min =  lm(LogSkermanella~ LogTFRL2mm, data=vmydata)
 Skerma_TFRL_full = lme(LogSkermanella~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Skerma_TFRL_canola = lme(LogSkermanella~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
+
 
 AIC(Skerma_TRL_intc) # 691.7127
 AIC(Skerma_TFRL_min) # 692.0873
 AIC(Skerma_TFRL_full) # 691.6073   
+AIC(Skerma_TFRL_canola)# 694.0873
 
 summary(Skerma_TRL_intc)
 summary(Skerma_TFRL_min)
 summary(Skerma_TFRL_full)
+summary(Skerma_TFRL_canola)
+
 #
 
 Skerma_TRL_intc = lm(LogSkermanella ~ 1, data=vmydata)
 Skerma_FRL_min =  lm(LogSkermanella~ LogFRL, data=vmydata)
 Skerma_FRL_full = lme(LogSkermanella~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Skerma_FRL_canola = lme(LogSkermanella~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Skerma_TRL_intc) # 691.7127
 AIC(Skerma_FRL_min) # 686.0122
 AIC(Skerma_FRL_full) # 688.0122    
+AIC(Skerma_FRL_canola)# 688.0122
 
 summary(Skerma_TRL_intc)
 summary(Skerma_FRL_min)
 summary(Skerma_FRL_full)
+summary(Skerma_FRL_canola)
 
 #
 Skerma_TRL_intc = lm(LogSkermanella ~ 1, data=vmydata)
 Skerma_EFRL_min =  lm(LogSkermanella~ LogExtraFRL, data=vmydata)
 Skerma_EFRL_full = lme(LogSkermanella~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Skerma_EFRL_canola = lme(LogSkermanella~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Skerma_TRL_intc) # 691.7127
 AIC(Skerma_EFRL_min) # 693.1454
 AIC(Skerma_EFRL_full) # 690.946   
+AIC(Skerma_EFRL_canola) # 695.1454
 
 summary(Skerma_TRL_intc)
 summary(Skerma_EFRL_min)
 summary(Skerma_EFRL_full)
+summary(Skerma_EFRL_canola)
 
 #
 
 Skerma_TRL_intc = lm(LogSkermanella ~ 1, data=vmydata)
 Skerma_CRL_min =  lm(LogSkermanella~ LogCoarseRL, data=vmydata)
 Skerma_CRL_full = lme(LogSkermanella~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Skerma_CRL_canola = lme(LogSkermanella~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Skerma_TRL_intc) # 691.7127
 AIC(Skerma_CRL_min) #  688.2221
 AIC(Skerma_CRL_full)  # 689.6539 
-
+AIC(Skerma_CRL_canola)# 690.2221
 
 summary(Skerma_TRL_intc)
 summary(Skerma_CRL_min)
 summary(Skerma_CRL_full)
+summary(Skerma_CRL_canola)
 
 # LogStenotrophomonas
 
 Stenot_TRL_intc = lm(LogStenotrophomonas ~ 1, data=vmydata)
 Stenot_TRL_min =  lm(LogStenotrophomonas~ LogTotal_RL, data=vmydata)
 Stenot_TRL_full = lme(LogStenotrophomonas~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Stenot_TRL_canola = lme(LogStenotrophomonas~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Stenot_TRL_intc) # 864.2343
 AIC(Stenot_TRL_min) # 841.5513
 AIC(Stenot_TRL_full) # 807.3586
+AIC(Stenot_TRL_canola)# 843.5425
 
 summary(Stenot_TRL_intc)
 summary(Stenot_TRL_min)
 summary(Stenot_TRL_full)
+summary(Stenot_TRL_canola)
+
 #
 Stenot_TRL_intc = lm(LogStenotrophomonas ~ 1, data=vmydata)
 Stenot_TFRL_min =  lm(LogStenotrophomonas~ LogTFRL2mm, data=vmydata)
 Stenot_TFRL_full = lme(LogStenotrophomonas~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Stenot_TFRL_canola = lme(LogStenotrophomonas~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Stenot_TRL_intc) # 864.2343
 AIC(Stenot_TFRL_min) # 843.5201
 AIC(Stenot_TFRL_full) # 807.3094   
+AIC(Stenot_TFRL_canola)# 845.5175
 
 summary(Stenot_TRL_intc)
 summary(Stenot_TFRL_min)
 summary(Stenot_TFRL_full)
+summary(Stenot_TFRL_canola)
+
 #
 
 Stenot_TRL_intc = lm(LogStenotrophomonas ~ 1, data=vmydata)
 Stenot_FRL_min =  lm(LogStenotrophomonas~ LogFRL, data=vmydata)
 Stenot_FRL_full = lme(LogStenotrophomonas~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Stenot_FRL_canola = lme(LogStenotrophomonas~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Stenot_TRL_intc) # 864.2343
 AIC(Stenot_FRL_min) # 838.2514
 AIC(Stenot_FRL_full) # 807.5404    
+AIC(Stenot_FRL_canola)# 840.1386
 
 summary(Stenot_TRL_intc)
 summary(Stenot_FRL_min)
 summary(Stenot_FRL_full)
+summary(Stenot_FRL_canola)
 
 #
 Stenot_TRL_intc = lm(LogStenotrophomonas ~ 1, data=vmydata)
 Stenot_EFRL_min =  lm(LogStenotrophomonas~ LogExtraFRL, data=vmydata)
 Stenot_EFRL_full = lme(LogStenotrophomonas~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Stenot_EFRL_canola = lme(LogStenotrophomonas~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Stenot_TRL_intc) # 864.2343
 AIC(Stenot_EFRL_min) # 847.3551
 AIC(Stenot_EFRL_full) # 807.192   
+AIC(Stenot_EFRL_canola)# 849.3551
 
 summary(Stenot_TRL_intc)
 summary(Stenot_EFRL_min)
 summary(Stenot_EFRL_full)
+summary(Stenot_EFRL_canola)
 
 #
 
 Stenot_TRL_intc = lm(LogStenotrophomonas ~ 1, data=vmydata)
 Stenot_CRL_min =  lm(LogStenotrophomonas~ LogCoarseRL, data=vmydata)
 Stenot_CRL_full = lme(LogStenotrophomonas~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Stenot_CRL_canola = lme(LogStenotrophomonas~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Stenot_TRL_intc) # 864.2343
 AIC(Stenot_CRL_min) #  830.7127
 AIC(Stenot_CRL_full)  # 689.6539 
-
+AIC(Stenot_CRL_canola) # 832.7127
 
 summary(Stenot_TRL_intc)
 summary(Stenot_CRL_min)
 summary(Stenot_CRL_full)
+summary(Stenot_CRL_canola)
 
 
 # LogVariovorax
@@ -3797,133 +4055,168 @@ summary(Stenot_CRL_full)
 Variov_TRL_intc = lm(LogVariovorax ~ 1, data=vmydata)
 Variov_TRL_min =  lm(LogVariovorax~ LogTotal_RL, data=vmydata)
 Variov_TRL_full = lme(LogVariovorax~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Variov_TRL_canola = lme(LogVariovorax~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Variov_TRL_intc) # 831.2716
 AIC(Variov_TRL_min) # 797.3162
 AIC(Variov_TRL_full) # 776.3505
+AIC(Variov_TRL_canola)# 799.13
 
 summary(Variov_TRL_intc)
 summary(Variov_TRL_min)
 summary(Variov_TRL_full)
+summary(Variov_TRL_canola)
+
 #
 Variov_TRL_intc = lm(LogVariovorax ~ 1, data=vmydata)
 Variov_TFRL_min =  lm(LogVariovorax~ LogTFRL2mm, data=vmydata)
 Variov_TFRL_full = lme(LogVariovorax~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Variov_TFRL_canola = lme(LogVariovorax~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Variov_TRL_intc) # 831.2716
 AIC(Variov_TFRL_min) # 798.7099
 AIC(Variov_TFRL_full) # 776.4711   
+AIC(Variov_TFRL_canola)# 800.555
 
 summary(Variov_TRL_intc)
 summary(Variov_TFRL_min)
 summary(Variov_TFRL_full)
+summary(Variov_TFRL_canola)
+
 #
 
 Variov_TRL_intc = lm(LogVariovorax ~ 1, data=vmydata)
 Variov_FRL_min =  lm(LogVariovorax~ LogFRL, data=vmydata)
 Variov_FRL_full = lme(LogVariovorax~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Variov_FRL_canola = lme(LogVariovorax~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Variov_TRL_intc) # 831.2716
 AIC(Variov_FRL_min) # 794.0276
 AIC(Variov_FRL_full) # 775.7645    
+AIC(Variov_FRL_canola)# 795.0428
 
 summary(Variov_TRL_intc)
 summary(Variov_FRL_min)
 summary(Variov_FRL_full)
+summary(Variov_FRL_canola)
 
 #
 Variov_TRL_intc = lm(LogVariovorax ~ 1, data=vmydata)
 Variov_EFRL_min =  lm(LogVariovorax~ LogExtraFRL, data=vmydata)
 Variov_EFRL_full = lme(LogVariovorax~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Variov_EFRL_canola = lme(LogVariovorax~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Variov_TRL_intc) # 831.2716
 AIC(Variov_EFRL_min) # 803.8701
 AIC(Variov_EFRL_full) # 777.0659   
+AIC(Variov_EFRL_canola)# 805.8608
 
 summary(Variov_TRL_intc)
 summary(Variov_EFRL_min)
 summary(Variov_EFRL_full)
+summary(Variov_EFRL_canola)
 
 #
 
 Variov_TRL_intc = lm(LogVariovorax ~ 1, data=vmydata)
 Variov_CRL_min =  lm(LogVariovorax~ LogCoarseRL, data=vmydata)
 Variov_CRL_full = lme(LogVariovorax~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Variov_CRL_canola = lme(LogVariovorax~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Variov_TRL_intc) # 831.2716
 AIC(Variov_CRL_min) #  797.9092
 AIC(Variov_CRL_full)  # 776.808 
-
+AIC(Variov_CRL_canola)# 799.6202
 
 summary(Variov_TRL_intc)
 summary(Variov_CRL_min)
 summary(Variov_CRL_full)
+summary(Variov_CRL_canola)
 
 # LogXanthomonas
 
 Xantho_TRL_intc = lm(LogXanthomonas ~ 1, data=vmydata)
 Xantho_TRL_min =  lm(LogXanthomonas~ LogTotal_RL, data=vmydata)
 Xantho_TRL_full = lme(LogXanthomonas~ LogTotal_RL , random=~1|week, method ="ML", data=vmydata)
+Xantho_TRL_canola = lme(LogXanthomonas~ LogTotal_RL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Xantho_TRL_intc) # 293.6256
 AIC(Xantho_TRL_min) # 295.6206
 AIC(Xantho_TRL_full) # 297.6206
+AIC(Xantho_TRL_canola)# 297.6206
 
 summary(Xantho_TRL_intc)
 summary(Xantho_TRL_min)
 summary(Xantho_TRL_full)
+summary(Xantho_TRL_canola)
+
 #
 Xantho_TRL_intc = lm(LogXanthomonas ~ 1, data=vmydata)
 Xantho_TFRL_min =  lm(LogXanthomonas~ LogTFRL2mm, data=vmydata)
 Xantho_TFRL_full = lme(LogXanthomonas~ LogTFRL2mm , random=~1|week, method ="ML", data=vmydata)
+Xantho_TFRL_canola = lme(LogXanthomonas~ LogTFRL2mm , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Xantho_TRL_intc) # 293.6256
 AIC(Xantho_TFRL_min) # 295.6091
 AIC(Xantho_TFRL_full) # 297.6091   
+AIC(Xantho_TFRL_canola)# 297.6091
 
 summary(Xantho_TRL_intc)
 summary(Xantho_TFRL_min)
 summary(Xantho_TFRL_full)
+summary(Xantho_TFRL_canola)
+
 #
 
 Xantho_TRL_intc = lm(LogXanthomonas ~ 1, data=vmydata)
 Xantho_FRL_min =  lm(LogXanthomonas~ LogFRL, data=vmydata)
 Xantho_FRL_full = lme(LogXanthomonas~ LogFRL , random=~1|week, method ="ML", data=vmydata)
+Xantho_FRL_canola = lme(LogXanthomonas~ LogFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Xantho_TRL_intc) # 293.6256
 AIC(Xantho_FRL_min) # 295.6091
 AIC(Xantho_FRL_full) # 297.6091    
+AIC(Xantho_FRL_canola)# 297.6091
 
 summary(Xantho_TRL_intc)
 summary(Xantho_FRL_min)
 summary(Xantho_FRL_full)
+summary(Xantho_FRL_canola)
 
 #
 Xantho_TRL_intc = lm(LogXanthomonas ~ 1, data=vmydata)
 Xantho_EFRL_min =  lm(LogXanthomonas~ LogExtraFRL, data=vmydata)
 Xantho_EFRL_full = lme(LogXanthomonas~ LogExtraFRL , random=~1|week, method ="ML", data=vmydata)
+Xantho_EFRL_canola = lme(LogXanthomonas~ LogExtraFRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Xantho_TRL_intc) # 293.6256
 AIC(Xantho_EFRL_min) # 295.5849
 AIC(Xantho_EFRL_full) # 297.5849   
+AIC(Xantho_EFRL_canola)# 297.5849
 
 summary(Xantho_TRL_intc)
 summary(Xantho_EFRL_min)
 summary(Xantho_EFRL_full)
+summary(Xantho_EFRL_canola)
 
 #
 
 Xantho_TRL_intc = lm(LogXanthomonas ~ 1, data=vmydata)
 Xantho_CRL_min =  lm(LogXanthomonas~ LogCoarseRL, data=vmydata)
 Xantho_CRL_full = lme(LogXanthomonas~ LogCoarseRL , random=~1|week, method ="ML", data=vmydata)
+Xantho_CRL_canola = lme(LogXanthomonas~ LogCoarseRL , random=~1|cline, method ="ML", data=vmydata)
 
 AIC(Xantho_TRL_intc) # 293.6256
 AIC(Xantho_CRL_min) #  295.4126
 AIC(Xantho_CRL_full)  # 297.4126 
-
+AIC(Xantho_CRL_canola)# 297.4126
 
 summary(Xantho_TRL_intc)
 summary(Xantho_CRL_min)
 summary(Xantho_CRL_full)
+summary(Xantho_CRL_canola)
+
+
+
 
 
